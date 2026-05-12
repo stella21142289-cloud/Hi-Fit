@@ -1,0 +1,2670 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi-Fit · 하이핏 16유형 탐색</title>
+  <meta name="description" content="72문항으로 확인하는 하이핏 16유형과 선택 과목 힌트." />
+  <meta property="og:title" content="Hi-Fit · 하이핏 16유형 탐색" />
+  <meta property="og:description" content="72문항으로 확인하는 하이핏 16유형과 선택 과목 힌트." />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+  <style>
+
+*,*::before,*::after{ box-sizing:border-box }
+html,body{ margin:0; padding:0 }
+:root{
+  --bg:#f7f8fc;
+  --bg-2:#eef0fa;
+  --panel:#ffffff;
+  --fg:#0f172a;
+  --fg-2:#334155;
+  --sub:#64748b;
+  --muted:#94a3b8;
+  --line:#e6e8f0;
+  --line-soft:#eef0f6;
+  --brand:#4f46e5;
+  --brand-2:#7c3aed;
+  --brand-3:#06b6d4;
+  --brand-deep:#3730a3;
+  --green-700:#0e7490;
+  --warm:#f59e0b;
+  --rose:#f43f5e;
+  --grad: linear-gradient(135deg, #4f46e5 0%, #7c3aed 48%, #06b6d4 100%);
+  --grad-soft: linear-gradient(135deg, rgba(79,70,229,.10), rgba(124,58,237,.10) 50%, rgba(6,182,212,.10));
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.04), 0 1px 1px rgba(15,23,42,.03);
+  --shadow-md: 0 6px 16px rgba(15,23,42,.06), 0 2px 4px rgba(15,23,42,.04);
+  --shadow-lg: 0 20px 40px rgba(15,23,42,.08), 0 8px 16px rgba(15,23,42,.05);
+  --shadow-hero: 0 30px 60px -20px rgba(79,70,229,.45), 0 18px 40px -25px rgba(6,182,212,.30);
+  --radius-sm: 10px;
+  --radius:14px;
+  --radius-lg:20px;
+  --radius-xl:26px;
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-display: "Inter", "SF Pro Display", Pretendard, sans-serif;
+}
+html{ scroll-behavior:smooth }
+body{
+  font-family:var(--font-sans);
+  color:var(--fg);
+  background:var(--bg);
+  font-size:15.5px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+}
+
+/* ---------- Background aurora (very subtle, slow) ---------- */
+body::before, body::after{
+  content:""; position:fixed; inset:-20%; z-index:-1; pointer-events:none;
+  background-repeat:no-repeat;
+}
+body::before{
+  background-image:
+    radial-gradient(40% 30% at 12% 8%, rgba(79,70,229,.20), transparent 70%),
+    radial-gradient(35% 28% at 88% 18%, rgba(6,182,212,.18), transparent 70%),
+    radial-gradient(50% 35% at 50% 100%, rgba(124,58,237,.14), transparent 70%);
+  filter: blur(50px);
+  animation: aurora 28s ease-in-out infinite alternate;
+}
+body::after{
+  background-image:
+    radial-gradient(30% 22% at 80% 70%, rgba(245,158,11,.10), transparent 70%),
+    radial-gradient(28% 22% at 10% 70%, rgba(6,182,212,.10), transparent 70%);
+  filter: blur(60px);
+  animation: aurora2 36s ease-in-out infinite alternate;
+}
+@keyframes aurora{
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(-3%, 2%, 0) scale(1.08); }
+}
+@keyframes aurora2{
+  0%   { transform: translate3d(2%, -2%, 0) scale(1); }
+  100% { transform: translate3d(-2%, 3%, 0) scale(1.05); }
+}
+
+/* ---------- Layout shell ---------- */
+.skip-link{
+  position:absolute; left:-9999px; top:0; background:var(--fg); color:#fff;
+  padding:8px 12px; border-radius:8px; z-index:9999;
+}
+.skip-link:focus{ left:12px; top:12px }
+
+.app-shell{ max-width:1180px; margin:0 auto; padding:0 20px }
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  background: rgba(255,255,255,.72);
+  border-bottom:1px solid rgba(226,232,240,.7);
+  margin: 0 -20px 0;
+}
+.header-inner{
+  max-width:1180px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px; gap:16px;
+}
+.brand{ display:flex; align-items:center; gap:12px; min-width:0 }
+.brand-mark{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:38px; padding:0 14px; border-radius:12px;
+  background: var(--grad);
+  color:#fff; font-family:var(--font-display); font-weight:800;
+  font-size:.95rem; letter-spacing:-.02em;
+  box-shadow: 0 6px 16px -6px rgba(79,70,229,.55);
+}
+.brand-title{ display:flex; flex-direction:column; min-width:0 }
+.brand-title strong{
+  font-family:var(--font-display); font-weight:800; font-size:1.02rem;
+  color:var(--fg); letter-spacing:-.02em;
+}
+.brand-title span{ font-size:.78rem; color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+
+.nav-actions{ display:flex; align-items:center; gap:6px }
+.nav-btn{
+  appearance:none; border:0; background:transparent; cursor:pointer;
+  font: inherit; color:var(--fg-2);
+  padding:8px 12px; border-radius:10px;
+  transition: background .18s ease, color .18s ease;
+}
+.nav-btn:hover{ background: rgba(79,70,229,.08); color:var(--brand) }
+.nav-btn.primary{
+  background:var(--grad); color:#fff;
+  box-shadow: 0 6px 16px -6px rgba(79,70,229,.55);
+  padding:9px 16px;
+}
+.nav-btn.primary:hover{ filter:brightness(1.05); background:var(--grad) }
+@media (max-width:680px){
+  .nav-actions .nav-btn:not(.primary){ display:none }
+  .brand-title span{ display:none }
+}
+
+/* ---------- Sections ---------- */
+.section{ padding:48px 0 }
+.section:first-of-type{ padding-top:40px }
+@media (max-width:680px){ .section{ padding:32px 0 } }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--brand); padding:6px 12px;
+  background: rgba(79,70,229,.08);
+  border:1px solid rgba(79,70,229,.16);
+  border-radius:999px;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  display:grid; grid-template-columns: 1.1fr .9fr; gap:48px; align-items:center;
+  min-height: 540px;
+}
+@media (max-width:880px){ .hero{ grid-template-columns:1fr; gap:24px; min-height:0 } }
+
+.hero h1{
+  margin:18px 0 16px;
+  font-family:var(--font-display);
+  font-weight:800; letter-spacing:-.035em; line-height:1.08;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  color:var(--fg);
+}
+.hero h1 .accent{
+  background: var(--grad);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-lead{
+  color:var(--fg-2); font-size:1.04rem; line-height:1.75;
+  max-width: 56ch; margin:0 0 24px;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:10px }
+
+/* Subtle staggered entrance — only animates on first paint */
+.hero > div:first-child > *{ opacity:0; transform: translateY(12px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards }
+.hero > div:first-child > *:nth-child(1){ animation-delay:.05s }
+.hero > div:first-child > *:nth-child(2){ animation-delay:.16s }
+.hero > div:first-child > *:nth-child(3){ animation-delay:.28s }
+.hero > div:first-child > *:nth-child(4){ animation-delay:.4s }
+@keyframes rise{ to{ opacity:1; transform:none } }
+
+/* ---------- Hero visual: a single calm ring + Hi-Fit disc ---------- */
+.hero-visual{
+  position:relative; aspect-ratio:1/1; max-width:460px; justify-self:center; width:100%;
+}
+.hero-ring{
+  position:absolute; inset:0; border-radius:50%;
+  background: conic-gradient(from 0deg,
+    #4f46e5 0deg, #7c3aed 90deg, #06b6d4 180deg,
+    #14b8a6 240deg, #f59e0b 300deg, #4f46e5 360deg);
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 56%, #000 57.4%, #000 70%, transparent 71%);
+          mask: radial-gradient(circle at 50% 50%, transparent 56%, #000 57.4%, #000 70%, transparent 71%);
+  filter: saturate(.9);
+  opacity:.85;
+  animation: ringSpin 60s linear infinite;
+}
+@keyframes ringSpin{ to{ transform: rotate(360deg) } }
+
+.hero-disc{
+  position:absolute; inset:14%; border-radius:50%;
+  background:
+    radial-gradient(120% 100% at 30% 20%, #ffffff 0%, #f3f4ff 50%, #e9ecff 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -20px 50px rgba(124,58,237,.10),
+    0 30px 50px -25px rgba(79,70,229,.45);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-weight:800;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  letter-spacing:-.045em;
+  background-clip: padding-box;
+}
+.hero-disc::before{
+  content:"Hi-Fit";
+  background: var(--grad);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-disc img{ display:none } /* original markup keeps <img>, hide it */
+.hero-disc::after{
+  /* gentle static highlight; not a moving shimmer */
+  content:""; position:absolute; inset:6%; border-radius:50%;
+  background: radial-gradient(60% 40% at 35% 22%, rgba(255,255,255,.65), transparent 60%);
+  pointer-events:none;
+}
+
+.hero-chip{
+  position:absolute; display:inline-flex; align-items:center; gap:8px;
+  padding:8px 14px; border-radius:999px;
+  background:#fff; color:var(--fg);
+  font-size:.85rem; font-weight:700;
+  box-shadow: var(--shadow-md);
+  border:1px solid var(--line);
+}
+.hero-chip .dot{
+  width:7px; height:7px; border-radius:50%;
+  background: var(--brand);
+}
+.hero-chip.c2 .dot{ background: var(--brand-3) }
+.hero-chip.c1{ top:6%; right:0%; animation: floatA 9s ease-in-out infinite }
+.hero-chip.c2{ bottom:8%; left:-2%; animation: floatB 11s ease-in-out infinite }
+@keyframes floatA{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-6px) } }
+@keyframes floatB{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(6px) } }
+
+/* ---------- Buttons ---------- */
+.btn{
+  appearance:none; cursor:pointer; font:inherit;
+  border:1px solid transparent;
+  padding:12px 20px; border-radius:12px;
+  font-weight:700; letter-spacing:-.01em;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  transition: transform .14s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  white-space: nowrap;
+}
+.btn:active{ transform: translateY(1px) }
+.btn-primary{
+  background: var(--grad); color:#fff;
+  box-shadow: 0 12px 24px -10px rgba(79,70,229,.55);
+}
+.btn-primary:hover{ filter: brightness(1.05); box-shadow: 0 16px 30px -10px rgba(79,70,229,.6) }
+.btn-secondary{
+  background:#fff; color:var(--fg);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover{ border-color: rgba(79,70,229,.4); color:var(--brand) }
+.btn-ghost{ background: transparent; color:var(--fg-2) }
+.btn-ghost:hover{ background: rgba(79,70,229,.08); color:var(--brand) }
+.btn:disabled{ opacity:.45; cursor:not-allowed; transform:none }
+.hidden{ display:none !important }
+
+/* ---------- Panel ---------- */
+.panel{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+@media (max-width:680px){ .panel{ padding:20px; border-radius:20px } }
+.panel-title{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+  margin-bottom: 22px;
+}
+.panel-title h2{
+  margin:0 0 6px; font-size:1.5rem; letter-spacing:-.02em;
+  font-family:var(--font-display); font-weight:800; color:var(--fg);
+}
+.panel-title p{ margin:0; color:var(--sub); font-size:.95rem; max-width: 60ch }
+
+/* ---------- Axis cards ---------- */
+.axis-grid{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:14px;
+  margin-bottom: 22px;
+}
+@media (max-width:880px){ .axis-grid{ grid-template-columns: repeat(2,1fr) } }
+.axis-card{
+  position:relative; padding:18px; border-radius: var(--radius-lg);
+  background: #fff; border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:8px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.axis-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(79,70,229,.25);
+}
+.axis-card::before{
+  content:""; position:absolute; left:18px; top:18px; width:30px; height:3px;
+  background: var(--grad); border-radius:999px;
+}
+.axis-code{
+  margin-top:10px;
+  font-family:var(--font-display); font-weight:800; font-size:.78rem;
+  letter-spacing:.16em; color:var(--brand);
+}
+.axis-card strong{ color:var(--fg); font-size:.98rem; letter-spacing:-.01em }
+.axis-card span{ color:var(--sub); font-size:.88rem; line-height:1.6 }
+
+/* ---------- Info cards ---------- */
+.info-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+}
+@media (max-width:880px){ .info-grid{ grid-template-columns: 1fr } }
+.info-card{
+  padding:18px; border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fff, #fafbff);
+  border:1px solid var(--line);
+}
+.info-card strong{ display:block; margin-bottom:6px; color:var(--fg); font-size:1rem }
+.info-card p{ margin:0; color:var(--sub); font-size:.92rem }
+
+/* ---------- Progress ---------- */
+.test-area, .result-area{ display:none }
+.test-area.active, .result-area.active{ display:block }
+
+.test-toolbar{ margin-bottom:18px }
+.progress-wrap{ display:flex; flex-direction:column; gap:8px }
+.progress-top{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:.88rem; color:var(--sub); font-weight:600;
+}
+.progress-top span:last-child{ color:var(--brand); font-family:var(--font-display) }
+.progress-track{
+  height:8px; border-radius:999px;
+  background: var(--line-soft);
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%; width:0%;
+  background: var(--grad);
+  border-radius:999px;
+  transition: width .35s cubic-bezier(.2,.7,.2,1);
+}
+.page-label{
+  font-family:var(--font-display); font-weight:700; font-size:.85rem;
+  color:var(--brand); padding:6px 12px; border-radius:999px;
+  background: rgba(79,70,229,.08); border:1px solid rgba(79,70,229,.15);
+}
+
+/* ---------- Question cards ---------- */
+.question-list{ display:flex; flex-direction:column; gap:14px }
+.question-card{
+  padding:20px; border-radius: var(--radius-lg);
+  background:#fff; border:1px solid var(--line);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.question-card:hover{ border-color: rgba(79,70,229,.2) }
+.question-head{ display:flex; gap:14px; align-items:flex-start }
+.question-number{
+  flex:0 0 auto;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:10px;
+  background: var(--grad-soft); color:var(--brand);
+  font-family:var(--font-display); font-weight:800; font-size:.95rem;
+  border:1px solid rgba(79,70,229,.18);
+}
+.question-text{
+  margin:6px 0 14px; color:var(--fg); font-size:1rem; font-weight:600;
+  letter-spacing:-.01em; line-height:1.55;
+}
+
+.choice-grid{
+  display:grid; grid-template-columns: repeat(5, 1fr); gap:8px;
+}
+@media (max-width:680px){ .choice-grid{ grid-template-columns: repeat(5, 1fr); gap:6px } }
+.choice{
+  position:relative; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  padding:14px 6px; border-radius:14px;
+  background:#fff; border:1.5px solid var(--line);
+  transition: border-color .15s ease, background .15s ease, transform .12s ease, color .15s ease;
+  text-align:center;
+}
+.choice input{ position:absolute; opacity:0; pointer-events:none }
+.choice b{
+  font-family:var(--font-display); font-weight:800; font-size:1.1rem;
+  color:var(--fg);
+}
+.choice span{ font-size:.72rem; color:var(--sub); line-height:1.3 }
+.choice:hover{ border-color: rgba(79,70,229,.45); background: rgba(79,70,229,.04) }
+.choice.selected{
+  background: var(--grad); border-color: transparent;
+  box-shadow: 0 12px 22px -10px rgba(79,70,229,.6);
+  transform: translateY(-1px);
+}
+.choice.selected b, .choice.selected span{ color:#fff }
+
+.test-nav{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  margin-top:22px; flex-wrap:wrap;
+}
+
+/* ---------- RESULT — careful color management ---------- */
+#resultContainer{ display:flex; flex-direction:column; gap:18px }
+.result-area.active #resultContainer{
+  animation: fadeUp .7s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(14px) }
+  to{ opacity:1; transform:none }
+}
+
+.result-hero{
+  display:grid; grid-template-columns: 1.15fr .85fr; gap:18px;
+  align-items:stretch;
+}
+@media (max-width:880px){ .result-hero{ grid-template-columns:1fr } }
+
+/* The dark hero card — only this element gets the gradient bg + white text.
+   Mini-cards stay white with normal dark text. */
+.type-card{
+  position:relative; overflow:hidden;
+  padding:32px; border-radius: var(--radius-xl);
+  background: var(--grad);
+  color:#ffffff;
+  box-shadow: var(--shadow-hero);
+  isolation:isolate;
+}
+.type-card::before{
+  /* subtle inner glow halo behind code */
+  content:""; position:absolute; inset:-30% -10% auto auto;
+  width:380px; height:380px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,.22), transparent 60%);
+  z-index:-1;
+}
+.type-card::after{
+  /* one-shot shimmer ribbon when result mounts */
+  content:""; position:absolute; top:0; bottom:0; left:-30%; width:30%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  transform: skewX(-20deg);
+  animation: shimmer 1.6s ease-out .25s 1;
+  pointer-events:none;
+}
+@keyframes shimmer{ to{ left: 130% } }
+
+.type-emoji-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:68px; height:68px; border-radius:22px;
+  background: rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.30);
+  backdrop-filter: blur(6px);
+  font-size: 2rem; margin-bottom:14px;
+  animation: pop .65s cubic-bezier(.2,1.4,.4,1) .15s both;
+}
+@keyframes pop{ from{ opacity:0; transform: scale(.6) } to{ opacity:1; transform: scale(1) } }
+.type-code{
+  display:inline-block;
+  font-family:var(--font-display); font-weight:800;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing:.04em; color:#fff;
+  background: rgba(255,255,255,.14);
+  padding: 6px 16px; border-radius:14px;
+  border:1px solid rgba(255,255,255,.22);
+  margin-bottom:14px;
+}
+.type-card h2{
+  margin:8px 0 8px; font-size:1.6rem; letter-spacing:-.02em;
+  color:#fff; font-family:var(--font-display); font-weight:800;
+}
+.type-tagline{ margin:0 0 14px; color: rgba(255,255,255,.92); font-weight:600 }
+.type-summary{ margin:0 0 16px; color: rgba(255,255,255,.86); line-height:1.7 }
+.mbti-note{
+  display:inline-block;
+  background: rgba(255,255,255,.16);
+  padding:6px 12px; border-radius:999px;
+  color:#fff; font-size:.85rem; font-weight:600;
+  border:1px solid rgba(255,255,255,.22);
+}
+.mbti-disclaimer{
+  margin:14px 0 0; color: rgba(255,255,255,.7); font-size:.78rem; line-height:1.5;
+}
+
+/* aside / right column */
+.result-side{ display:flex; flex-direction:column; gap:14px }
+
+/* CRITICAL: mini-card MUST use dark text, regardless of parent.
+   Use explicit color resets to defeat any inheritance. */
+.mini-card{
+  background:#ffffff;
+  color: var(--fg);
+  padding:20px;
+  border-radius: var(--radius-lg);
+  border:1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.mini-card,
+.mini-card h3,
+.mini-card p,
+.mini-card li,
+.mini-card span,
+.mini-card strong{ color: var(--fg) }
+.mini-card h3{
+  margin:0 0 10px; font-size:1rem; letter-spacing:-.01em;
+  font-family:var(--font-display); font-weight:800;
+  display:flex; align-items:center; gap:8px;
+  color: var(--brand-deep);
+}
+.mini-card h3::before{
+  content: attr(data-ic);
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:9px;
+  background: var(--grad-soft);
+  border:1px solid rgba(79,70,229,.18);
+  font-size: .9rem;
+}
+.mini-card p{ margin:0; color: var(--fg-2); line-height:1.65; font-size:.94rem }
+.mini-card ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px }
+.mini-card li{
+  position:relative; padding:6px 10px 6px 24px; border-radius:8px;
+  background: var(--bg-2); color: var(--fg-2);
+  font-size:.92rem;
+}
+.mini-card li::before{
+  content:""; position:absolute; left:10px; top:50%; width:6px; height:6px;
+  background: var(--brand); border-radius:50%;
+  transform: translateY(-50%);
+}
+
+.result-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+}
+@media (max-width:880px){ .result-grid{ grid-template-columns:1fr } }
+
+/* axis split */
+.axis-result-list{ display:flex; flex-direction:column; gap:10px }
+.split-axis{
+  display:grid; grid-template-columns: 1fr auto 1fr;
+  align-items:center; gap:10px;
+  padding:10px 12px; border-radius:12px;
+  background: var(--bg-2);
+  font-size:.92rem;
+}
+.split-label{ display:flex; align-items:center; gap:8px; color:var(--fg-2) }
+.split-label strong{ color: var(--fg); font-weight:700 }
+.split-axis > .split-label:last-child{ justify-content:flex-end }
+.split-mid{
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  letter-spacing:.06em; color:var(--brand);
+  padding:4px 10px; border-radius:999px;
+  background:#fff; border:1px solid var(--line);
+}
+
+/* career bars */
+.career-list{ display:flex; flex-direction:column; gap:10px }
+.bar-row{ display:flex; flex-direction:column; gap:6px }
+.bar-top{ display:flex; justify-content:space-between; font-size:.9rem; color: var(--fg-2) }
+.bar-top strong{ color: var(--fg); font-weight:700 }
+.bar-top span{ color: var(--brand); font-family: var(--font-display); font-weight:700 }
+.bar-track{
+  height:9px; border-radius:999px;
+  background: var(--line-soft); overflow:hidden;
+}
+.bar-fill{
+  height:100%; background: var(--grad);
+  border-radius:999px;
+  transform-origin: left;
+  animation: barGrow 1s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes barGrow{ from{ transform: scaleX(0) } to{ transform: scaleX(1) } }
+
+/* ---------- Course cards ---------- */
+.course-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+}
+@media (max-width:1000px){ .course-grid{ grid-template-columns: 1fr 1fr } }
+@media (max-width:680px){ .course-grid{ grid-template-columns: 1fr } }
+.course-card{
+  padding:20px; border-radius: var(--radius-lg);
+  background:#fff; border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:14px;
+}
+.course-card h3{
+  margin:0; font-size:1.05rem; color:var(--fg);
+  font-family:var(--font-display); font-weight:800; letter-spacing:-.01em;
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+}
+.course-card > p{ margin:0; color: var(--sub); font-size:.92rem; line-height:1.6 }
+.majors{
+  padding:10px 12px; border-radius:10px;
+  background: var(--bg-2);
+  color: var(--fg-2); font-size:.88rem; line-height:1.6;
+}
+.majors strong{ color:var(--fg) }
+.course-section strong{
+  display:block; margin-bottom:6px; font-size:.85rem;
+  color:var(--brand-deep); font-weight:700;
+}
+.chips{ display:flex; flex-wrap:wrap; gap:6px }
+.chip{
+  display:inline-flex; align-items:center;
+  padding:5px 10px; border-radius:999px;
+  background: var(--bg-2);
+  border:1px solid var(--line);
+  color: var(--fg-2);
+  font-size:.8rem; font-weight:600;
+}
+
+/* ---------- Admission ---------- */
+.admission-box{
+  margin-top:18px;
+  padding:18px 20px; border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+  border:1px solid #fde68a;
+}
+.admission-box h3{ margin:0 0 8px; color:#92400e; font-size:1.02rem; font-family:var(--font-display); font-weight:800 }
+.admission-box p{ margin:0 0 10px; color:#78350f; font-size:.92rem; line-height:1.65 }
+.admission-box ul{ margin:0; padding-left:18px; color:#78350f; font-size:.92rem; line-height:1.75 }
+.admission-box ul li{ margin-bottom:2px }
+
+/* ---------- Share ---------- */
+.share-box{
+  margin-top:18px;
+  padding:20px; border-radius: var(--radius-lg);
+  background:#fff; border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:12px;
+}
+.share-title{
+  font-family:var(--font-display); font-weight:800; color: var(--fg);
+  font-size:1.02rem;
+}
+.notice{
+  background: var(--bg-2); color: var(--fg-2);
+  padding:10px 12px; border-radius:10px; font-size:.86rem;
+}
+.share-actions{ display:flex; gap:8px; flex-wrap:wrap }
+
+/* ---------- Types overlay (modal) ---------- */
+.types-overlay{
+  position:fixed; inset:0; z-index:100;
+  background: rgba(15,23,42,.55); backdrop-filter: blur(6px);
+  display:none; align-items:center; justify-content:center;
+  padding: 20px;
+}
+.types-overlay.open{ display:flex; animation: fade .25s ease both }
+@keyframes fade{ from{ opacity:0 } to{ opacity:1 } }
+.types-modal{
+  background:#fff; border-radius: var(--radius-xl);
+  width:min(960px, 100%); max-height: 86vh; overflow:auto;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  animation: pop2 .35s cubic-bezier(.2,.9,.3,1) both;
+}
+@keyframes pop2{ from{ opacity:0; transform: translateY(12px) scale(.98) } to{ opacity:1; transform:none } }
+.types-modal-head{
+  position:sticky; top:0; z-index:2;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(8px);
+  padding:20px 24px; border-bottom:1px solid var(--line);
+  display:flex; justify-content:space-between; align-items:flex-start; gap:14px;
+}
+.types-modal-head h2{ margin:0 0 4px; font-size:1.3rem; font-family:var(--font-display); font-weight:800 }
+.types-modal-head p{ margin:0; color:var(--sub); font-size:.92rem }
+.types-close{
+  appearance:none; background:transparent; border:1px solid var(--line);
+  width:36px; height:36px; border-radius:10px; cursor:pointer;
+  font-size:1.4rem; color:var(--fg-2);
+}
+.types-close:hover{ background: var(--bg-2); color:var(--fg) }
+
+.types-grid{
+  padding:20px 24px; display:grid;
+  grid-template-columns: repeat(2, 1fr); gap:12px;
+}
+@media (max-width:680px){ .types-grid{ grid-template-columns: 1fr } }
+.type-tile{
+  padding:16px; border-radius: var(--radius);
+  background:#fff; border:1px solid var(--line);
+  transition: transform .15s ease, box-shadow .18s ease, border-color .15s ease;
+}
+.type-tile:hover{
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+  border-color: rgba(79,70,229,.3);
+}
+.tt-head{ display:flex; align-items:center; gap:12px; margin-bottom:8px }
+.tt-emoji{
+  width:40px; height:40px; border-radius:12px;
+  background: var(--grad-soft); border:1px solid rgba(79,70,229,.15);
+  display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+}
+.tt-code{
+  font-family:var(--font-display); font-weight:800; font-size:.85rem;
+  letter-spacing:.14em; color: var(--brand);
+}
+.type-tile h4{ margin:0; font-size:1rem; color:var(--fg) }
+.type-tile p{ margin:0; color: var(--sub); font-size:.88rem; line-height:1.55 }
+
+/* ---------- Footer ---------- */
+.footer{
+  margin: 60px -20px 0;
+  padding: 30px 20px;
+  border-top:1px solid var(--line);
+  background: rgba(255,255,255,.6);
+  backdrop-filter: blur(8px);
+}
+.footer-inner{
+  max-width:1180px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  flex-wrap:wrap;
+}
+.footer-brand{ display:flex; align-items:center; gap:14px }
+.footer-mark{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:36px; padding:0 12px; border-radius:10px;
+  background: var(--grad); color:#fff;
+  font-family:var(--font-display); font-weight:800; font-size:.9rem; letter-spacing:-.02em;
+}
+.footer-mark img{ display:none }
+.footer-brand p{ margin:0; color: var(--sub); font-size:.88rem; line-height:1.5 }
+.footer-inner > p{ margin:0; color: var(--muted); font-size:.82rem }
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed; left:50%; bottom:28px; transform: translateX(-50%) translateY(20px);
+  background: var(--fg); color:#fff;
+  padding:10px 18px; border-radius:999px;
+  font-size:.9rem; font-weight:600;
+  opacity:0; pointer-events:none;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index:200;
+}
+.toast.show{ opacity:1; transform: translateX(-50%) translateY(0) }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 이동</a>
+<div class="app-shell">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand" aria-label="Hi-Fit16">
+        <div class="brand-mark">Hi-Fit</div>
+        <div class="brand-title">
+          <strong>하이핏 16</strong>
+          <span>나에게 어울리는 진로·계열 탐색 테스트</span>
+        </div>
+      </div>
+      <nav class="nav-actions" aria-label="상단 메뉴">
+        <button class="nav-btn" type="button" data-scroll="#intro">소개</button>
+        <button class="nav-btn" type="button" data-scroll="#axis">4개 축</button>
+        <button class="nav-btn" type="button" id="topTypesBtn">전체 유형</button>
+        <button class="nav-btn primary" type="button" id="topStartBtn">시작하기</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section hero" id="intro">
+      <div>
+        <span class="eyebrow">Hi-Fit · 진로 탐색</span>
+        <h1><span class="accent">하이핏</span>으로 찾는<br/>나의 학습 성향 16유형</h1>
+        <p class="hero-lead">진로가 뚜렷하지 않아도 괜찮습니다. 일상 속 판단·탐색·소통 방식을 묻는 72개 문항으로, 학습 성향과 어울리는 계열·과목의 힌트를 차분하게 살펴봅니다.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" id="startBtn">테스트 시작하기</button>
+          <button class="btn btn-secondary" type="button" id="viewAllTypesBtn">전체 유형 보기</button>
+          <button class="btn btn-ghost" type="button" data-scroll="#axis">4개 축이란?</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-ring"></div>
+        <div class="hero-disc">
+          <img src="" alt="" />
+        </div>
+        <div class="hero-chip c1"><span class="dot"></span>72문항</div>
+        <div class="hero-chip c2"><span class="dot"></span>16유형</div>
+      </div>
+    </section>
+
+    <section class="section" id="axis">
+      <div class="panel">
+        <div class="panel-title">
+          <div>
+            <h2>4개의 진로핏 축</h2>
+            <p>어느 한쪽이 더 우월하다는 뜻이 아닙니다. 일상 속 문제 해결에서 어떤 방식을 더 자주 쓰고 선호하는지를 살펴보는 기준입니다.</p>
+          </div>
+        </div>
+        <div class="axis-grid" id="axisIntro"></div>
+        <div class="info-grid">
+          <article class="info-card">
+            <strong>📝 72개 일상 문항</strong>
+            <p>직업·학과를 직접 묻지 않고, 평소의 판단·탐색·소통 방식을 묻습니다.</p>
+          </article>
+          <article class="info-card">
+            <strong>🧭 16가지 진로핏 유형</strong>
+            <p>4개 축의 조합으로 기억하기 쉬운 4글자 코드로 정리됩니다.</p>
+          </article>
+          <article class="info-card">
+            <strong>📚 과목 설계 힌트</strong>
+            <p>2022 개정 교육과정의 일반·진로·융합 선택 과목 후보를 제안합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section test-area" id="testSection" aria-live="polite">
+      <div class="panel">
+        <div class="panel-title">
+          <div>
+            <h2>진로핏 문항</h2>
+            <p>지금의 나와 가까운 정도를 골라 주세요. 정답이 있는 검사가 아니며, 문항 순서는 매번 새로 섞입니다.</p>
+          </div>
+          <span class="page-label" id="pageLabel">1 / 8</span>
+        </div>
+        <div class="test-toolbar">
+          <div class="progress-wrap" aria-label="응답 진행률">
+            <div class="progress-top"><span id="progressText">0 / 72 응답</span><span id="progressPercent">0%</span></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+        </div>
+        <div class="question-list" id="questionList"></div>
+        <div class="test-nav">
+          <button class="btn btn-secondary" type="button" id="prevBtn">이전</button>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <button class="btn btn-ghost" type="button" id="restartBtn">처음부터 다시</button>
+            <button class="btn btn-primary" type="button" id="nextBtn">다음</button>
+            <button class="btn btn-primary hidden" type="button" id="resultBtn">결과 보기</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section result-area" id="resultSection" aria-live="polite">
+      <div id="resultContainer"></div>
+    </section>
+  </main>
+
+  <div class="types-overlay" id="typesOverlay" role="dialog" aria-modal="true" aria-labelledby="typesOverlayTitle">
+    <div class="types-modal" role="document">
+      <div class="types-modal-head">
+        <div>
+          <h2 id="typesOverlayTitle">하이핏 16유형 한눈에 보기</h2>
+          <p>각 유형의 코드와 한 줄 설명을 미리 살펴볼 수 있습니다.</p>
+        </div>
+        <button class="types-close" type="button" id="typesCloseBtn" aria-label="닫기">×</button>
+      </div>
+      <div class="types-grid" id="typesGrid"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-mark">Hi-Fit</div>
+        <p>이 테스트는 영주제일고등학교 교사 오민열이 GPT-5.5와 Claude Opus 4.7의 도움을 받아 제작하였습니다.</p>
+      </div>
+      <p>Hi-Fit 16 · v1.0</p>
+    </div>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const TYPE_META = {
+  HAFR: { emoji:"📖", tagline:"읽고, 쓰고, 깊이 해석하는 사람" },
+  HAFD: { emoji:"🎯", tagline:"구조와 근거로 방향을 설계하는 사람" },
+  HAXR: { emoji:"🌏", tagline:"문화와 경험을 큐레이션하는 사람" },
+  HAXD: { emoji:"🧩", tagline:"사회 문제를 융합적으로 기획하는 사람" },
+  HCFR: { emoji:"🎨", tagline:"관계 속에서 콘텐츠를 빚는 사람" },
+  HCFD: { emoji:"✨", tagline:"서비스 경험을 정교하게 디자인하는 사람" },
+  HCXR: { emoji:"📱", tagline:"공감의 언어로 소셜을 움직이는 사람" },
+  HCXD: { emoji:"🎬", tagline:"미디어를 융합해 새로 만드는 사람" },
+  SAFR: { emoji:"🔬", tagline:"현상을 끝까지 파고드는 과학 멘토" },
+  SAFD: { emoji:"📊", tagline:"데이터로 의사결정을 설계하는 사람" },
+  SAXR: { emoji:"🧠", tagline:"여러 분야의 지식을 연결하는 탐색가" },
+  SAXD: { emoji:"🤖", tagline:"문제를 정의하고 기술로 푸는 전략가" },
+  SCFR: { emoji:"🩺", tagline:"건강·안전을 현장에서 지키는 실천가" },
+  SCFD: { emoji:"🛠️", tagline:"손으로 만들고 검증하는 테크 메이커" },
+  SCXR: { emoji:"💡", tagline:"생활 문제를 발명으로 푸는 사람" },
+  SCXD: { emoji:"🚀", tagline:"AI·기술 융합으로 빌딩하는 사람" }
+};
+
+const APP = {
+  "logoUrl": "https://raw.githubusercontent.com/stella21142289-cloud/JEILPORTAL/main/jeil-green-bgx.png",
+  "githubBlobUrl": "https://github.com/stella21142289-cloud/JEILPORTAL/blob/main/jeil-green-bgx.png",
+  "questions": [
+    {
+      "id": "Q01",
+      "axis": "HS",
+      "pole": "H",
+      "text": "여러 사람이 얽힌 상황에서 각자의 입장과 감정을 상상해 보는 편이다."
+    },
+    {
+      "id": "Q02",
+      "axis": "HS",
+      "pole": "H",
+      "text": "뉴스나 드라마를 볼 때 사건보다 그 속의 사람 관계가 더 오래 남는다."
+    },
+    {
+      "id": "Q03",
+      "axis": "HS",
+      "pole": "H",
+      "text": "모르는 주제라도 사람의 삶과 연결되면 금방 관심이 생긴다."
+    },
+    {
+      "id": "Q04",
+      "axis": "HS",
+      "pole": "H",
+      "text": "어떤 일이 잘못되었을 때 “왜 그런 마음이 들었을까?”를 먼저 생각한다."
+    },
+    {
+      "id": "Q05",
+      "axis": "HS",
+      "pole": "H",
+      "text": "친구의 고민을 들으면 해결책보다 마음을 정리할 말을 먼저 찾는다."
+    },
+    {
+      "id": "Q06",
+      "axis": "HS",
+      "pole": "H",
+      "text": "사회의 규칙이나 문화가 사람들에게 어떤 영향을 주는지 궁금하다."
+    },
+    {
+      "id": "Q07",
+      "axis": "HS",
+      "pole": "H",
+      "text": "새로운 장소에 가면 시설보다 그곳 사람들의 분위기가 먼저 보인다."
+    },
+    {
+      "id": "Q08",
+      "axis": "HS",
+      "pole": "H",
+      "text": "설명을 들을 때 구체적인 사례나 이야기가 있으면 더 잘 이해된다."
+    },
+    {
+      "id": "Q09",
+      "axis": "HS",
+      "pole": "H",
+      "text": "내가 배운 것이 누군가의 삶을 더 낫게 만드는 방식에 관심이 많다."
+    },
+    {
+      "id": "Q10",
+      "axis": "HS",
+      "pole": "S",
+      "text": "복잡한 문제를 볼 때 사람의 감정보다 구조나 원리를 먼저 파악하려 한다."
+    },
+    {
+      "id": "Q11",
+      "axis": "HS",
+      "pole": "S",
+      "text": "어떤 물건이 작동하는 방식이나 시스템의 흐름을 알아내는 것이 재미있다."
+    },
+    {
+      "id": "Q12",
+      "axis": "HS",
+      "pole": "S",
+      "text": "자연 현상이나 기술이 왜 그렇게 움직이는지 원리를 알고 싶다."
+    },
+    {
+      "id": "Q13",
+      "axis": "HS",
+      "pole": "S",
+      "text": "말보다 숫자, 도표, 과정표처럼 명확한 정보가 더 편하다."
+    },
+    {
+      "id": "Q14",
+      "axis": "HS",
+      "pole": "S",
+      "text": "감으로 판단하기보다 근거와 조건을 정리한 뒤 결정하고 싶다."
+    },
+    {
+      "id": "Q15",
+      "axis": "HS",
+      "pole": "S",
+      "text": "주변에서 반복되는 패턴이나 규칙을 발견하는 일이 흥미롭다."
+    },
+    {
+      "id": "Q16",
+      "axis": "HS",
+      "pole": "S",
+      "text": "문제를 사람 탓으로 보기보다 환경, 조건, 시스템을 바꿔 해결하고 싶다."
+    },
+    {
+      "id": "Q17",
+      "axis": "HS",
+      "pole": "S",
+      "text": "설명을 들을 때 “그래서 어떤 원리로 되는가?”가 궁금하다."
+    },
+    {
+      "id": "Q18",
+      "axis": "HS",
+      "pole": "S",
+      "text": "효율적인 절차나 도구를 만들면 일이 더 좋아질 것이라고 생각한다."
+    },
+    {
+      "id": "Q19",
+      "axis": "AC",
+      "pole": "A",
+      "text": "시작하기 전에 기준과 근거를 충분히 확인해야 마음이 편하다."
+    },
+    {
+      "id": "Q20",
+      "axis": "AC",
+      "pole": "A",
+      "text": "어떤 주장에 동의하기 전, 반례나 빠진 조건을 먼저 생각한다."
+    },
+    {
+      "id": "Q21",
+      "axis": "AC",
+      "pole": "A",
+      "text": "결과보다 그 결과가 나온 과정과 논리가 더 중요하게 느껴진다."
+    },
+    {
+      "id": "Q22",
+      "axis": "AC",
+      "pole": "A",
+      "text": "새로운 아이디어도 자료와 근거가 뒷받침될 때 더 설득력 있다고 느낀다."
+    },
+    {
+      "id": "Q23",
+      "axis": "AC",
+      "pole": "A",
+      "text": "한 가지 주제를 깊게 파고들어 정확하게 이해하는 시간이 좋다."
+    },
+    {
+      "id": "Q24",
+      "axis": "AC",
+      "pole": "A",
+      "text": "토론할 때 감각적인 표현보다 개념을 명확히 정의하는 것이 중요하다."
+    },
+    {
+      "id": "Q25",
+      "axis": "AC",
+      "pole": "A",
+      "text": "실수를 줄이기 위해 체크리스트나 기준표를 만들어 보는 편이다."
+    },
+    {
+      "id": "Q26",
+      "axis": "AC",
+      "pole": "A",
+      "text": "어려운 문제를 만나면 먼저 작은 단위로 나누어 원인을 찾는다."
+    },
+    {
+      "id": "Q27",
+      "axis": "AC",
+      "pole": "A",
+      "text": "결정을 내릴 때 ‘왜 이 선택이 더 타당한가’를 설명할 수 있어야 한다."
+    },
+    {
+      "id": "Q28",
+      "axis": "AC",
+      "pole": "C",
+      "text": "완벽한 계획보다 일단 시도하면서 고쳐 나가는 방식이 잘 맞는다."
+    },
+    {
+      "id": "Q29",
+      "axis": "AC",
+      "pole": "C",
+      "text": "새로운 과제에서는 정답을 찾기보다 색다른 접근을 해보고 싶다."
+    },
+    {
+      "id": "Q30",
+      "axis": "AC",
+      "pole": "C",
+      "text": "머릿속 아이디어를 그림, 글, 영상, 모형, 앱 등으로 표현해 보고 싶다."
+    },
+    {
+      "id": "Q31",
+      "axis": "AC",
+      "pole": "C",
+      "text": "여러 가능성을 빠르게 떠올리고 그중 하나를 실험해 보는 편이다."
+    },
+    {
+      "id": "Q32",
+      "axis": "AC",
+      "pole": "C",
+      "text": "정해진 규칙이 있어도 더 재미있고 편리한 방식으로 바꿔 보고 싶다."
+    },
+    {
+      "id": "Q33",
+      "axis": "AC",
+      "pole": "C",
+      "text": "발표나 프로젝트에서 사람들의 관심을 끄는 구성과 표현을 고민한다."
+    },
+    {
+      "id": "Q34",
+      "axis": "AC",
+      "pole": "C",
+      "text": "손으로 만들거나 실제로 움직여 보는 활동을 할 때 집중이 잘 된다."
+    },
+    {
+      "id": "Q35",
+      "axis": "AC",
+      "pole": "C",
+      "text": "설명만 듣는 것보다 직접 해보고 피드백을 받는 방식이 더 좋다."
+    },
+    {
+      "id": "Q36",
+      "axis": "AC",
+      "pole": "C",
+      "text": "결과물이 눈에 보이거나 누군가가 사용할 수 있을 때 성취감이 크다."
+    },
+    {
+      "id": "Q37",
+      "axis": "FX",
+      "pole": "F",
+      "text": "관심 있는 분야가 생기면 다른 것보다 그 주제에 시간을 오래 쓰고 싶다."
+    },
+    {
+      "id": "Q38",
+      "axis": "FX",
+      "pole": "F",
+      "text": "한 과목이나 활동에서 실력이 쌓이는 느낌이 들 때 만족스럽다."
+    },
+    {
+      "id": "Q39",
+      "axis": "FX",
+      "pole": "F",
+      "text": "여러 일을 동시에 하기보다 중요한 목표를 정해 꾸준히 밀고 가는 편이다."
+    },
+    {
+      "id": "Q40",
+      "axis": "FX",
+      "pole": "F",
+      "text": "공부할 때 넓게 훑기보다 핵심 개념을 깊게 이해하는 것이 더 중요하다고 느낀다."
+    },
+    {
+      "id": "Q41",
+      "axis": "FX",
+      "pole": "F",
+      "text": "일정한 루틴과 장기 계획이 있을 때 성과가 잘 난다."
+    },
+    {
+      "id": "Q42",
+      "axis": "FX",
+      "pole": "F",
+      "text": "내가 선택한 분야에서 전문성을 갖춘 사람이 되고 싶다."
+    },
+    {
+      "id": "Q43",
+      "axis": "FX",
+      "pole": "F",
+      "text": "과제를 할 때 주제가 좁아도 충분히 깊이 있게 다루는 것이 좋다."
+    },
+    {
+      "id": "Q44",
+      "axis": "FX",
+      "pole": "F",
+      "text": "시작한 일을 끝까지 완성하지 못하면 마음이 불편하다."
+    },
+    {
+      "id": "Q45",
+      "axis": "FX",
+      "pole": "F",
+      "text": "관심사가 바뀌더라도 한동안은 한 방향을 정해 성과를 확인하고 싶다."
+    },
+    {
+      "id": "Q46",
+      "axis": "FX",
+      "pole": "X",
+      "text": "한 가지 분야에 묶이기보다 여러 분야를 연결해 보고 싶다."
+    },
+    {
+      "id": "Q47",
+      "axis": "FX",
+      "pole": "X",
+      "text": "처음 보는 주제라도 ‘이것과 저것을 합치면 어떨까?’라는 생각을 자주 한다."
+    },
+    {
+      "id": "Q48",
+      "axis": "FX",
+      "pole": "X",
+      "text": "진로가 아직 확실하지 않아도 다양한 경험을 해보며 찾는 편이 좋다."
+    },
+    {
+      "id": "Q49",
+      "axis": "FX",
+      "pole": "X",
+      "text": "여러 과목에서 배운 내용을 섞어 새로운 질문을 만드는 일이 재미있다."
+    },
+    {
+      "id": "Q50",
+      "axis": "FX",
+      "pole": "X",
+      "text": "계획이 조금 바뀌어도 새로운 가능성이 생기면 괜찮다고 느낀다."
+    },
+    {
+      "id": "Q51",
+      "axis": "FX",
+      "pole": "X",
+      "text": "한 분야의 전문가보다 여러 분야를 이해하는 연결자가 되고 싶다."
+    },
+    {
+      "id": "Q52",
+      "axis": "FX",
+      "pole": "X",
+      "text": "프로젝트에서 자료 조사, 기획, 제작, 발표 등 여러 역할을 넘나드는 편이다."
+    },
+    {
+      "id": "Q53",
+      "axis": "FX",
+      "pole": "X",
+      "text": "낯선 활동을 해보면 내가 몰랐던 흥미를 발견할 수 있다고 생각한다."
+    },
+    {
+      "id": "Q54",
+      "axis": "FX",
+      "pole": "X",
+      "text": "정해진 답보다 열린 질문을 따라가며 탐색하는 시간이 좋다."
+    },
+    {
+      "id": "Q55",
+      "axis": "RD",
+      "pole": "R",
+      "text": "혼자 잘하는 것보다 팀이 함께 납득할 수 있는 방향을 만드는 것이 중요하다."
+    },
+    {
+      "id": "Q56",
+      "axis": "RD",
+      "pole": "R",
+      "text": "내가 설명한 내용을 다른 사람이 이해했을 때 뿌듯하다."
+    },
+    {
+      "id": "Q57",
+      "axis": "RD",
+      "pole": "R",
+      "text": "의견이 다른 사람들과 조율해 합의점을 찾는 과정이 싫지 않다."
+    },
+    {
+      "id": "Q58",
+      "axis": "RD",
+      "pole": "R",
+      "text": "발표, 인터뷰, 상담, 토론처럼 말과 글로 생각을 나누는 활동이 잘 맞는다."
+    },
+    {
+      "id": "Q59",
+      "axis": "RD",
+      "pole": "R",
+      "text": "과제의 성패는 자료만큼이나 사람들 사이의 소통에 달려 있다고 생각한다."
+    },
+    {
+      "id": "Q60",
+      "axis": "RD",
+      "pole": "R",
+      "text": "어떤 일을 맡으면 주변 사람의 필요와 반응을 살피는 편이다."
+    },
+    {
+      "id": "Q61",
+      "axis": "RD",
+      "pole": "R",
+      "text": "사람들의 행동을 바꾸려면 설득과 공감이 중요하다고 느낀다."
+    },
+    {
+      "id": "Q62",
+      "axis": "RD",
+      "pole": "R",
+      "text": "결과를 정리할 때 듣는 사람이 이해하기 쉬운 표현을 고민한다."
+    },
+    {
+      "id": "Q63",
+      "axis": "RD",
+      "pole": "R",
+      "text": "갈등 상황에서 각자의 말을 들어보고 조정하는 역할을 하게 되는 경우가 있다."
+    },
+    {
+      "id": "Q64",
+      "axis": "RD",
+      "pole": "D",
+      "text": "어떤 결정을 할 때 감보다 데이터나 관찰 기록이 있으면 더 믿음이 간다."
+    },
+    {
+      "id": "Q65",
+      "axis": "RD",
+      "pole": "D",
+      "text": "반복되는 일을 자동화하거나 도구로 단순화하는 데 관심이 있다."
+    },
+    {
+      "id": "Q66",
+      "axis": "RD",
+      "pole": "D",
+      "text": "표, 그래프, 코드, 실험 결과처럼 검증 가능한 자료를 다루는 것이 좋다."
+    },
+    {
+      "id": "Q67",
+      "axis": "RD",
+      "pole": "D",
+      "text": "문제가 생기면 먼저 로그, 기록, 수치, 조건을 확인하고 싶다."
+    },
+    {
+      "id": "Q68",
+      "axis": "RD",
+      "pole": "D",
+      "text": "기술이나 디지털 도구를 활용하면 사람들의 생활이 더 효율적이 될 수 있다고 생각한다."
+    },
+    {
+      "id": "Q69",
+      "axis": "RD",
+      "pole": "D",
+      "text": "여러 의견을 들은 뒤에도 최종 판단은 객관적 근거로 정리하고 싶다."
+    },
+    {
+      "id": "Q70",
+      "axis": "RD",
+      "pole": "D",
+      "text": "데이터를 분석해 숨은 패턴을 찾거나 예측하는 활동이 흥미롭다."
+    },
+    {
+      "id": "Q71",
+      "axis": "RD",
+      "pole": "D",
+      "text": "새로운 앱이나 AI 도구가 나오면 어떻게 활용할 수 있을지 생각해 본다."
+    },
+    {
+      "id": "Q72",
+      "axis": "RD",
+      "pole": "D",
+      "text": "말로 설명하기 어려운 문제도 모델, 알고리즘, 도식으로 표현해 보고 싶다."
+    }
+  ],
+  "types": {
+    "HAFR": {
+      "name": "공감형 인문 탐구가",
+      "mbti": "INFJ · INFP와 닮은 면",
+      "summary": "사람의 마음과 삶의 의미를 깊이 해석하며, 말과 글로 생각을 정리하는 데 강점이 있습니다.",
+      "strengths": [
+        "깊이 있는 독서와 성찰",
+        "공감 기반 의사소통",
+        "윤리·문화·언어 감수성"
+      ],
+      "learning": [
+        "읽기-쓰기-토론 루틴 만들기",
+        "관심 주제를 긴 글이나 발표로 정리하기",
+        "인문·사회 탐구 주제를 꾸준히 축적하기"
+      ],
+      "watch": [
+        "관심사가 너무 추상적으로 흐르지 않도록 실제 사례와 자료를 붙이기",
+        "과목 선택은 국어·영어·사회 기반 위에 진로 선택을 더하기"
+      ],
+      "guide": "정답보다 의미를 묻는 학생입니다. 상담에서는 ‘왜 이 주제가 너에게 중요한가’를 묻고, 독서·토론·글쓰기 산출물로 진로 탐색을 구체화하도록 돕습니다.",
+      "careers": [
+        "HUM",
+        "EDU",
+        "SOC"
+      ]
+    },
+    "HAFD": {
+      "name": "전략형 사회분석가",
+      "mbti": "INTJ · INFJ와 닮은 면",
+      "summary": "사회 현상과 사람의 행동을 구조적으로 분석하고, 근거를 바탕으로 방향을 설계하는 유형입니다.",
+      "strengths": [
+        "문제 구조화",
+        "정책·법·심리적 사고",
+        "자료 기반 판단"
+      ],
+      "learning": [
+        "사회 쟁점의 원인-결과 도식화",
+        "통계·자료 해석 역량 강화",
+        "논술형 글쓰기와 정책 제안 연습"
+      ],
+      "watch": [
+        "분석이 비판에만 머물지 않도록 대안 제시까지 이어가기",
+        "수학·통계 과목을 사회계열 역량으로 연결하기"
+      ],
+      "guide": "상담에서는 사회문제, 법, 경제, 심리 중 어느 맥락에서 학생이 강하게 반응하는지 확인합니다. 자료 해석과 글쓰기 활동을 함께 설계하면 좋습니다.",
+      "careers": [
+        "SOC",
+        "HUM",
+        "EDU"
+      ]
+    },
+    "HAXR": {
+      "name": "문화 탐험 큐레이터",
+      "mbti": "ENFP · INFP와 닮은 면",
+      "summary": "사람과 문화에 대한 호기심이 넓고, 여러 경험을 연결해 자신만의 관점을 만들어 가는 유형입니다.",
+      "strengths": [
+        "문화적 감수성",
+        "폭넓은 관심사",
+        "스토리텔링과 관계 형성"
+      ],
+      "learning": [
+        "다양한 분야의 짧은 탐색 후 관심 주제 좁히기",
+        "문화·언어·사회 활동 기록하기",
+        "탐색 경험을 포트폴리오로 정리하기"
+      ],
+      "watch": [
+        "흥미가 자주 바뀌면 탐색 기록을 남겨 공통 키워드 찾기",
+        "결과물 없이 경험만 쌓이지 않도록 산출물 만들기"
+      ],
+      "guide": "진로가 유동적인 학생일 수 있습니다. ‘좋아한 경험의 공통점’을 찾고, 독서·인터뷰·콘텐츠 제작으로 탐색을 구조화하도록 지도합니다.",
+      "careers": [
+        "HUM",
+        "ART",
+        "LIB"
+      ]
+    },
+    "HAXD": {
+      "name": "융합형 정책 기획자",
+      "mbti": "ENTP · ENFP와 닮은 면",
+      "summary": "사람과 사회의 문제를 넓게 바라보고, 정보와 데이터를 활용해 새로운 해결 방안을 떠올리는 유형입니다.",
+      "strengths": [
+        "융합적 문제정의",
+        "사회·데이터 연결",
+        "기획력"
+      ],
+      "learning": [
+        "사회 이슈를 데이터로 확인하기",
+        "경제·정치·법·미디어를 연결한 탐구",
+        "프로젝트형 과제에서 역할 넓히기"
+      ],
+      "watch": [
+        "아이디어가 많을수록 우선순위와 실행 계획 세우기",
+        "자료 출처와 근거를 꼼꼼히 점검하기"
+      ],
+      "guide": "정책·경영·미디어·데이터가 교차하는 학생입니다. 탐구 주제를 너무 넓게 잡지 않도록 대상, 지표, 해결안을 명확히 하게 합니다.",
+      "careers": [
+        "SOC",
+        "LIB",
+        "ENG"
+      ]
+    },
+    "HCFR": {
+      "name": "관계형 콘텐츠 빌더",
+      "mbti": "ENFJ · ESFJ와 닮은 면",
+      "summary": "사람에게 전달되는 결과물을 만들고, 관계 속에서 아이디어를 실행하는 데 강점이 있습니다.",
+      "strengths": [
+        "콘텐츠 표현력",
+        "협업과 조율",
+        "실행 중심 태도"
+      ],
+      "learning": [
+        "발표·영상·글쓰기 결과물 만들기",
+        "팀 프로젝트에서 기획-제작-공유 경험 쌓기",
+        "피드백을 반영해 결과물 개선하기"
+      ],
+      "watch": [
+        "관계 조율에 에너지를 너무 쓰지 않도록 역할 범위 정하기",
+        "기획 의도와 학습 근거를 함께 기록하기"
+      ],
+      "guide": "활동성이 높은 학생입니다. 결과물을 만들되 ‘왜 그렇게 만들었는가’를 설명할 수 있도록 근거와 성찰을 붙이는 지도가 필요합니다.",
+      "careers": [
+        "ART",
+        "HUM",
+        "EDU"
+      ]
+    },
+    "HCFD": {
+      "name": "서비스 경험 디자이너",
+      "mbti": "ENFJ · ENTJ와 닮은 면",
+      "summary": "사람의 필요를 읽고, 실제로 쓸 수 있는 서비스나 활동을 설계하는 데 잘 맞는 유형입니다.",
+      "strengths": [
+        "사용자 관점",
+        "실행력",
+        "기획과 운영"
+      ],
+      "learning": [
+        "사용자 조사와 설문 분석 경험",
+        "서비스 개선안·캠페인 기획",
+        "프로토타입 제작과 피드백 반영"
+      ],
+      "watch": [
+        "빠른 실행 전 문제 정의를 명확히 하기",
+        "팀의 의견과 데이터 사이 균형 잡기"
+      ],
+      "guide": "교육, 복지, 경영, 디자인, 보건 서비스 등으로 연결할 수 있습니다. 사용자 관찰-자료수집-개선안의 과정을 경험하게 합니다.",
+      "careers": [
+        "EDU",
+        "SOC",
+        "ART"
+      ]
+    },
+    "HCXR": {
+      "name": "소셜 크리에이터",
+      "mbti": "ESFP · ENFP와 닮은 면",
+      "summary": "사람들과 함께 움직이며 아이디어를 표현하고 확산하는 데 흥미가 큰 유형입니다.",
+      "strengths": [
+        "현장 감각",
+        "표현력",
+        "관계 기반 실행"
+      ],
+      "learning": [
+        "짧은 프로젝트를 여러 번 경험하기",
+        "콘텐츠·캠페인·행사 기획 참여",
+        "활동 후 배운 점을 기록으로 남기기"
+      ],
+      "watch": [
+        "재미있는 활동을 진로 언어로 번역하기",
+        "결과물의 완성도와 지속성을 점검하기"
+      ],
+      "guide": "흥미 유발이 중요한 학생입니다. 활동을 많이 하되, 활동명보다 역할·배운 점·다음 질문을 정리하게 하면 성장 기록이 좋아집니다.",
+      "careers": [
+        "ART",
+        "PHE",
+        "LIB"
+      ]
+    },
+    "HCXD": {
+      "name": "미디어 융합 메이커",
+      "mbti": "ENTP · ENFP와 닮은 면",
+      "summary": "미디어, 디자인, 사회 이슈, 기술을 섞어 새로운 표현과 서비스를 만드는 데 어울립니다.",
+      "strengths": [
+        "융합 콘텐츠 기획",
+        "빠른 실행과 개선",
+        "디지털 도구 활용"
+      ],
+      "learning": [
+        "영상·디자인·웹·데이터 도구 탐색",
+        "문제 해결형 콘텐츠 제작",
+        "사회 이슈를 미디어 프로젝트로 표현"
+      ],
+      "watch": [
+        "표현의 화려함보다 메시지와 근거를 분명히 하기",
+        "기술 도구 사용 과정을 학습 기록으로 남기기"
+      ],
+      "guide": "미디어와 정보 과목, 국어·사회 과목을 연결해 지도하면 좋습니다. 결과물 중심 학생이므로 주제 선정과 평가 기준을 명확히 제시합니다.",
+      "careers": [
+        "ART",
+        "ENG",
+        "LIB"
+      ]
+    },
+    "SAFR": {
+      "name": "탐구형 과학 멘토",
+      "mbti": "INTP · ISFJ와 닮은 면",
+      "summary": "자연·시스템의 원리를 차분히 이해하고, 배운 내용을 다른 사람에게 설명하는 데 강점이 있습니다.",
+      "strengths": [
+        "개념 이해",
+        "차분한 설명",
+        "실험·관찰 태도"
+      ],
+      "learning": [
+        "과학 개념을 그림과 글로 설명하기",
+        "실험 기록과 오차 분석 연습",
+        "수학·과학 위계에 맞춘 학습 루틴"
+      ],
+      "watch": [
+        "이해만 하고 표현을 미루지 않도록 발표·보고서 경험 늘리기",
+        "관심 분야를 생명·물리·화학·지구과학 중 구체화하기"
+      ],
+      "guide": "기초 개념을 탄탄히 쌓는 학생입니다. 과학 일반선택을 먼저 충분히 경험하고, 진로 선택 과목으로 심화하도록 설계합니다.",
+      "careers": [
+        "NAT",
+        "MED",
+        "EDU"
+      ]
+    },
+    "SAFD": {
+      "name": "데이터 사이언스 설계자",
+      "mbti": "INTJ · INTP와 닮은 면",
+      "summary": "현상을 수학·과학·데이터로 분석하고, 명확한 모델과 근거를 세우는 데 강한 유형입니다.",
+      "strengths": [
+        "수리적 사고",
+        "자료 분석",
+        "정밀한 계획"
+      ],
+      "learning": [
+        "대수·미적분·확률과 통계 기반 강화",
+        "실용 통계·데이터 과학 탐구",
+        "실험 또는 데이터 분석 보고서 작성"
+      ],
+      "watch": [
+        "완벽한 분석을 기다리다 실행이 늦어지지 않도록 중간 결과 공유하기",
+        "전공 분야에 따라 과학 과목 조합을 조정하기"
+      ],
+      "guide": "수학·과학·정보 교과를 축으로 지도합니다. 데이터 분석 결과를 해석하고 사회적 의미까지 설명하도록 확장하면 좋습니다.",
+      "careers": [
+        "NAT",
+        "ENG",
+        "MED"
+      ]
+    },
+    "SAXR": {
+      "name": "지식 융합 탐색가",
+      "mbti": "INTP · INFJ와 닮은 면",
+      "summary": "원리 탐구를 좋아하면서도 하나의 분야에 빨리 고정되기보다 여러 학문을 연결해 보고 싶어합니다.",
+      "strengths": [
+        "폭넓은 호기심",
+        "개념 연결",
+        "탐구 질문 생성"
+      ],
+      "learning": [
+        "여러 과목을 비교하며 공통 개념 찾기",
+        "융합과학·수학과제 탐구 경험",
+        "탐색 후 1~2개 핵심 분야로 좁히기"
+      ],
+      "watch": [
+        "진로 미정을 약점으로 보지 말고 탐색 계획으로 바꾸기",
+        "너무 넓은 주제는 질문을 작게 나누기"
+      ],
+      "guide": "자율전공·융합계열과 잘 맞을 수 있습니다. 관심 분야별 과목 조합을 여러 시나리오로 만들고, 공통으로 필요한 기초 과목을 우선 안내합니다.",
+      "careers": [
+        "LIB",
+        "NAT",
+        "HUM"
+      ]
+    },
+    "SAXD": {
+      "name": "문제정의형 테크 전략가",
+      "mbti": "ENTP · INTJ와 닮은 면",
+      "summary": "복잡한 시스템 문제를 발견하고, 데이터와 기술을 활용해 여러 해결 경로를 탐색하는 유형입니다.",
+      "strengths": [
+        "문제 정의",
+        "기술·데이터 연결",
+        "전략적 사고"
+      ],
+      "learning": [
+        "정보·수학·과학을 연결한 프로젝트",
+        "AI·데이터 도구로 문제 분석",
+        "탐구 주제의 조건과 제약 정리"
+      ],
+      "watch": [
+        "아이디어 확산 후 검증 가능한 기준 만들기",
+        "기술 자체보다 해결하려는 문제를 먼저 설명하기"
+      ],
+      "guide": "공학, AI, 데이터, 자연과학, 경영정보 등으로 확장 가능합니다. 과목 선택은 수학 기반과 정보/과학 심화의 균형이 중요합니다.",
+      "careers": [
+        "ENG",
+        "LIB",
+        "NAT"
+      ]
+    },
+    "SCFR": {
+      "name": "현장형 건강·안전 실천가",
+      "mbti": "ISFJ · ISTP와 닮은 면",
+      "summary": "실제 상황에서 사람의 건강과 안전, 생활 문제를 해결하는 데 관심이 큰 유형입니다.",
+      "strengths": [
+        "현장 관찰",
+        "실천력",
+        "책임감"
+      ],
+      "learning": [
+        "보건·생명과학·체육·생활과학 연결",
+        "사례 기반 탐구 보고서",
+        "건강·안전 캠페인이나 실습 활동"
+      ],
+      "watch": [
+        "활동 경험을 과학적 원리와 연결해 설명하기",
+        "관심이 체험에만 머물지 않도록 개념 학습 강화"
+      ],
+      "guide": "보건·간호·식품·체육·안전 분야를 함께 열어두고 상담합니다. 실천 활동과 생명과학·화학·보건 과목을 연결하는 방식이 효과적입니다.",
+      "careers": [
+        "MED",
+        "PHE",
+        "EDU"
+      ]
+    },
+    "SCFD": {
+      "name": "테크 메이커",
+      "mbti": "ISTP · INTJ와 닮은 면",
+      "summary": "기술과 도구를 활용해 실제로 작동하는 결과물을 만들고 개선하는 데 어울리는 유형입니다.",
+      "strengths": [
+        "제작과 개선",
+        "기술 이해",
+        "문제 해결 실행력"
+      ],
+      "learning": [
+        "수학·물리·정보 기초 다지기",
+        "로봇·소프트웨어·공학 설계 경험",
+        "실패 원인 기록 후 개선하기"
+      ],
+      "watch": [
+        "만드는 과정뿐 아니라 원리와 수학적 근거를 정리하기",
+        "혼자 해결하려 하지 말고 협업 기록도 남기기"
+      ],
+      "guide": "공학·정보·기술 계열 과목을 추천하되, 대수·미적분·확률과 통계와 물리학의 기초를 반드시 확인합니다.",
+      "careers": [
+        "ENG",
+        "NAT",
+        "PHE"
+      ]
+    },
+    "SCXR": {
+      "name": "생활문제 해결 메이커",
+      "mbti": "ESTP · ESFP와 닮은 면",
+      "summary": "일상 속 불편함을 발견하고, 직접 움직이며 해결책을 시험해 보는 데 강한 유형입니다.",
+      "strengths": [
+        "현장 문제 발견",
+        "빠른 실험",
+        "적응력"
+      ],
+      "learning": [
+        "생활 속 문제를 프로젝트로 바꾸기",
+        "기술·디자인·체육·과학을 섞은 활동",
+        "실패 사례와 개선 과정을 기록하기"
+      ],
+      "watch": [
+        "즉흥적 실행 후 근거와 평가 기준 보완하기",
+        "흥미 분야를 과목 선택으로 연결하기"
+      ],
+      "guide": "직접 해보는 활동에서 성장합니다. 활동 전 목표와 활동 후 근거 정리를 습관화시키면 진로 탐색이 훨씬 탄탄해집니다.",
+      "careers": [
+        "PHE",
+        "ENG",
+        "ART"
+      ]
+    },
+    "SCXD": {
+      "name": "AI융합 빌더",
+      "mbti": "ENTP · INTP와 닮은 면",
+      "summary": "기술, 데이터, 시스템을 여러 분야와 결합해 새로운 문제 해결 방식을 만드는 유형입니다.",
+      "strengths": [
+        "AI·데이터 활용",
+        "융합 설계",
+        "프로토타이핑"
+      ],
+      "learning": [
+        "인공지능 수학·데이터 과학 탐색",
+        "소프트웨어와 생활·정보 심화",
+        "융합 프로젝트를 작은 앱·모델·보고서로 구현"
+      ],
+      "watch": [
+        "기술 유행을 따라가기보다 기초 수학·과학 역량을 쌓기",
+        "프로젝트의 사용자와 윤리 문제도 함께 고려하기"
+      ],
+      "guide": "공학·AI·자율전공·데이터 계열로 확장성이 큽니다. 수학 위계를 지키고, 정보와 과학을 함께 설계하도록 지도합니다.",
+      "careers": [
+        "ENG",
+        "LIB",
+        "NAT"
+      ]
+    }
+  },
+  "careers": {
+    "HUM": {
+      "name": "인문·언어·문화",
+      "summary": "글, 언어, 역사, 철학, 문화, 문학과 매체를 통해 사람과 세계의 의미를 해석하는 계열입니다.",
+      "majors": "국어국문, 영어영문, 철학, 역사, 언어학, 문헌정보, 문화콘텐츠, 미디어커뮤니케이션",
+      "admission": "인문계열은 국어·영어·사회 기반을 충실히 쌓고, 제2외국어/한문·교양·매체 관련 과목으로 관심을 확장하면 좋습니다.",
+      "general": [
+        "화법과 언어",
+        "독서와 작문",
+        "문학",
+        "영어Ⅰ",
+        "영어Ⅱ",
+        "영어 독해와 작문",
+        "세계시민과 지리",
+        "사회와 문화",
+        "세계사",
+        "현대사회와 윤리"
+      ],
+      "career": [
+        "주제 탐구 독서",
+        "문학과 영상",
+        "영미 문학 읽기",
+        "심화 영어",
+        "심화 영어 독해와 작문",
+        "윤리와 사상",
+        "인문학과 윤리",
+        "동아시아 역사 기행",
+        "한문 고전 읽기"
+      ],
+      "fusion": [
+        "독서 토론과 글쓰기",
+        "매체 의사소통",
+        "언어생활 탐구",
+        "세계 문화와 영어",
+        "역사로 탐구하는 현대 세계",
+        "논술"
+      ],
+      "community": [
+        "심화 외국어",
+        "문예 창작",
+        "사회과제 연구",
+        "미디어 콘텐츠 제작"
+      ]
+    },
+    "SOC": {
+      "name": "사회·경영·법·정책·심리",
+      "summary": "사람과 제도, 시장, 법, 정책, 심리, 사회문제를 분석하고 더 나은 의사결정을 탐구하는 계열입니다.",
+      "majors": "경영, 경제, 행정, 법, 정치외교, 사회, 심리, 사회복지, 국제학, 광고홍보",
+      "admission": "사회계열은 국어·영어·사회 기반과 함께 대수·확률과 통계 등 수학적 자료 해석 역량이 자주 연결됩니다.",
+      "general": [
+        "사회와 문화",
+        "세계시민과 지리",
+        "현대사회와 윤리",
+        "대수",
+        "확률과 통계",
+        "영어Ⅰ",
+        "영어Ⅱ",
+        "독서와 작문"
+      ],
+      "career": [
+        "정치",
+        "법과 사회",
+        "경제",
+        "국제 관계의 이해",
+        "한국지리 탐구",
+        "도시의 미래 탐구",
+        "인간과 심리",
+        "인간과 경제활동",
+        "경제 수학"
+      ],
+      "fusion": [
+        "사회문제 탐구",
+        "금융과 경제생활",
+        "윤리문제 탐구",
+        "실용 통계",
+        "논술",
+        "매체 의사소통"
+      ],
+      "community": [
+        "사회과제 연구",
+        "국제 경제",
+        "국제법",
+        "마케팅과 광고",
+        "비즈니스 커뮤니케이션"
+      ]
+    },
+    "NAT": {
+      "name": "자연과학·수리탐구",
+      "summary": "자연 현상과 수학적 구조를 이해하고, 관찰·실험·모델링으로 원리를 탐구하는 계열입니다.",
+      "majors": "수학, 통계, 물리, 화학, 생명과학, 지구과학, 천문, 환경, 데이터과학",
+      "admission": "자연계열은 대수·미적분Ⅰ·확률과 통계의 기반 위에 미적분Ⅱ·기하와 과학 일반/진로 선택을 단계적으로 설계하는 흐름이 중요합니다.",
+      "general": [
+        "대수",
+        "미적분Ⅰ",
+        "확률과 통계",
+        "물리학",
+        "화학",
+        "생명과학",
+        "지구과학",
+        "영어 독해와 작문"
+      ],
+      "career": [
+        "기하",
+        "미적분Ⅱ",
+        "역학과 에너지",
+        "전자기와 양자",
+        "물질과 에너지",
+        "화학 반응의 세계",
+        "세포와 물질대사",
+        "생물의 유전",
+        "지구시스템과학",
+        "행성우주과학"
+      ],
+      "fusion": [
+        "융합과학 탐구",
+        "과학의 역사와 문화",
+        "기후변화와 환경생태",
+        "수학과제 탐구",
+        "실용 통계"
+      ],
+      "community": [
+        "고급 수학",
+        "고급 물리학",
+        "고급 화학",
+        "고급 생명과학",
+        "과학과제 연구",
+        "과학 실험"
+      ]
+    },
+    "ENG": {
+      "name": "공학·AI·정보·기술",
+      "summary": "기술, 시스템, 소프트웨어, 기계, 전기전자, 로봇, AI를 활용해 문제를 해결하는 계열입니다.",
+      "majors": "컴퓨터공학, 소프트웨어, 인공지능, 전기전자, 기계, 산업공학, 로봇, 건축공학, 항공, 반도체",
+      "admission": "공학계열은 수학 위계와 물리학·화학·정보 관련 학습이 중요합니다. 특히 AI·컴퓨터 분야는 데이터와 알고리즘 경험을 함께 쌓으면 좋습니다.",
+      "general": [
+        "대수",
+        "미적분Ⅰ",
+        "확률과 통계",
+        "물리학",
+        "화학",
+        "정보",
+        "기술·가정",
+        "영어 독해와 작문"
+      ],
+      "career": [
+        "기하",
+        "미적분Ⅱ",
+        "인공지능 수학",
+        "인공지능 기초",
+        "데이터 과학",
+        "로봇과 공학세계",
+        "역학과 에너지",
+        "전자기와 양자",
+        "물질과 에너지"
+      ],
+      "fusion": [
+        "창의 공학 설계",
+        "지식 재산 일반",
+        "소프트웨어와 생활",
+        "수학과제 탐구",
+        "실용 통계",
+        "융합과학 탐구"
+      ],
+      "community": [
+        "정보과학",
+        "프로그래밍",
+        "자료 구조",
+        "알고리즘 설계",
+        "컴퓨터 네트워크",
+        "인공지능 일반",
+        "로봇 소프트웨어 개발"
+      ]
+    },
+    "MED": {
+      "name": "보건·의약·생명·식품",
+      "summary": "생명 현상, 건강, 질병, 식품, 돌봄과 보건 안전을 과학적으로 이해하는 계열입니다.",
+      "majors": "의예, 약학, 간호, 보건, 생명공학, 식품영양, 임상병리, 치의예, 한의예, 바이오",
+      "admission": "보건·의약계열은 화학·생명과학과 수학 기반을 충실히 준비하고, 세포·유전·화학 반응 등 진로 선택 과목으로 심화하는 흐름이 자주 권장됩니다.",
+      "general": [
+        "대수",
+        "미적분Ⅰ",
+        "확률과 통계",
+        "화학",
+        "생명과학",
+        "보건",
+        "영어 독해와 작문"
+      ],
+      "career": [
+        "미적분Ⅱ",
+        "물질과 에너지",
+        "화학 반응의 세계",
+        "세포와 물질대사",
+        "생물의 유전",
+        "생명과학 실험",
+        "화학 실험",
+        "인간과 심리"
+      ],
+      "fusion": [
+        "융합과학 탐구",
+        "기후변화와 환경생태",
+        "생활과학 탐구",
+        "생태와 환경",
+        "실용 통계"
+      ],
+      "community": [
+        "공중 보건",
+        "인체 구조와 기능",
+        "간호의 기초",
+        "식품 과학",
+        "식품과 영양",
+        "바이오 기초 화학"
+      ]
+    },
+    "EDU": {
+      "name": "교육·상담·복지·인간발달",
+      "summary": "배움, 성장, 상담, 돌봄, 복지와 인간 발달을 이해하고 지원하는 계열입니다.",
+      "majors": "교육학, 초등교육, 국어교육, 수학교육, 상담, 심리, 유아교육, 사회복지, 특수교육",
+      "admission": "교육계열은 희망 교과의 기초 과목과 인간 이해·소통 역량을 함께 보여주는 것이 중요합니다.",
+      "general": [
+        "화법과 언어",
+        "독서와 작문",
+        "사회와 문화",
+        "현대사회와 윤리",
+        "영어Ⅰ",
+        "영어Ⅱ",
+        "진로와 직업"
+      ],
+      "career": [
+        "교육의 이해",
+        "인간과 심리",
+        "인간 발달",
+        "아동발달과 부모",
+        "인문학과 윤리",
+        "윤리와 사상",
+        "주제 탐구 독서"
+      ],
+      "fusion": [
+        "독서 토론과 글쓰기",
+        "사회문제 탐구",
+        "윤리문제 탐구",
+        "논술",
+        "생애 설계와 자립"
+      ],
+      "community": [
+        "보육 원리와 보육 교사",
+        "사회 복지 시설의 이해",
+        "교육 관련 과제 연구",
+        "상담 기초"
+      ]
+    },
+    "ART": {
+      "name": "예술·미디어·디자인·콘텐츠",
+      "summary": "이미지, 소리, 이야기, 공간, 미디어와 디지털 콘텐츠를 창의적으로 표현하는 계열입니다.",
+      "majors": "시각디자인, 영상, 음악, 미술, 연극영화, 광고, 문화콘텐츠, 게임, 디지털미디어",
+      "admission": "예술·미디어계열은 실기·창작 경험뿐 아니라 국어·영어·사회·정보·매체 과목을 통해 표현의 근거와 메시지를 확장할 수 있습니다.",
+      "general": [
+        "미술",
+        "음악",
+        "연극",
+        "문학",
+        "영어Ⅰ",
+        "영어Ⅱ",
+        "정보",
+        "사회와 문화"
+      ],
+      "career": [
+        "미술 창작",
+        "미술 감상과 비평",
+        "음악 연주와 창작",
+        "음악 감상과 비평",
+        "문학과 영상",
+        "미디어 영어",
+        "디자인 일반",
+        "컴퓨터 그래픽",
+        "영상 제작 기초"
+      ],
+      "fusion": [
+        "미술과 매체",
+        "음악과 미디어",
+        "매체 의사소통",
+        "세계 문화와 영어",
+        "소프트웨어와 생활",
+        "창의 공학 설계"
+      ],
+      "community": [
+        "광고 콘텐츠 제작",
+        "게임 디자인",
+        "영상 제작",
+        "사진 표현 기법",
+        "VR·AR 콘텐츠 제작",
+        "미디어 콘텐츠 일반"
+      ]
+    },
+    "PHE": {
+      "name": "체육·스포츠·안전·생활건강",
+      "summary": "신체 활동, 스포츠 과학, 운동 재활, 건강관리, 안전과 생활 문제를 다루는 계열입니다.",
+      "majors": "체육, 스포츠과학, 스포츠경영, 운동재활, 안전, 레저, 보건체육, 물리치료",
+      "admission": "체육·생활건강계열은 체육 과목과 함께 생명과학·보건·통계 기반을 갖추면 스포츠 과학과 건강관리 탐구로 확장하기 좋습니다.",
+      "general": [
+        "체육1",
+        "체육2",
+        "운동과 건강",
+        "스포츠 문화",
+        "스포츠 과학",
+        "생명과학",
+        "보건",
+        "확률과 통계"
+      ],
+      "career": [
+        "스포츠 생활1",
+        "스포츠 생활2",
+        "스포츠 개론",
+        "스포츠 생리의학",
+        "스포츠 경기 분석",
+        "스포츠 행정 및 경영",
+        "심화 체육 전공 실기",
+        "인간과 심리"
+      ],
+      "fusion": [
+        "실용 통계",
+        "생활과학 탐구",
+        "기후변화와 환경생태",
+        "생태와 환경",
+        "융합과학 탐구"
+      ],
+      "community": [
+        "스포츠 경기 기술",
+        "스포츠 교육",
+        "공중 보건",
+        "응급 처치",
+        "레저 서비스 일반"
+      ]
+    },
+    "LIB": {
+      "name": "자율전공·융합탐색",
+      "summary": "아직 한 계열로 좁히기보다 여러 분야를 연결하며 자신에게 맞는 학습 경로를 설계하는 계열입니다.",
+      "majors": "자유전공, 자율전공, 융합학부, 데이터융합, 미래사회융합, 학부대학, 창의융합",
+      "admission": "자율전공·융합탐색은 폭넓은 일반 선택 과목을 기반으로 관심 분야의 진로·융합 선택을 조합해 자기주도성과 탐색 과정을 보여주는 방향이 좋습니다.",
+      "general": [
+        "화법과 언어",
+        "독서와 작문",
+        "대수",
+        "확률과 통계",
+        "미적분Ⅰ",
+        "영어Ⅰ",
+        "영어Ⅱ",
+        "사회와 문화",
+        "과학 일반선택 2과목 이상",
+        "정보",
+        "진로와 직업"
+      ],
+      "career": [
+        "주제 탐구 독서",
+        "경제",
+        "인간과 심리",
+        "데이터 과학",
+        "인공지능 기초",
+        "로봇과 공학세계",
+        "국제 관계의 이해"
+      ],
+      "fusion": [
+        "독서 토론과 글쓰기",
+        "수학과제 탐구",
+        "융합과학 탐구",
+        "소프트웨어와 생활",
+        "금융과 경제생활",
+        "사회문제 탐구",
+        "논술",
+        "생태와 환경"
+      ],
+      "community": [
+        "학교 간 공동교육과정 탐색",
+        "온라인학교 개설 과목",
+        "대학 연계 탐구 프로그램",
+        "지역사회 프로젝트"
+      ]
+    }
+  },
+  "axes": {
+    "HS": {
+      "left": "H",
+      "right": "S",
+      "leftName": "사람·사회",
+      "rightName": "자연·시스템",
+      "desc": "관심의 출발점이 사람과 맥락인지, 구조와 원리인지 살펴봅니다."
+    },
+    "AC": {
+      "left": "A",
+      "right": "C",
+      "leftName": "분석·원리",
+      "rightName": "창작·실행",
+      "desc": "문제를 이해하는 방식이 근거 중심인지, 시도와 구현 중심인지 살펴봅니다."
+    },
+    "FX": {
+      "left": "F",
+      "right": "X",
+      "leftName": "집중·심화",
+      "rightName": "탐색·융합",
+      "desc": "학습 경로가 한 분야를 깊게 파는 쪽인지, 여러 분야를 연결하는 쪽인지 살펴봅니다."
+    },
+    "RD": {
+      "left": "R",
+      "right": "D",
+      "leftName": "소통·관계",
+      "rightName": "데이터·기술",
+      "desc": "해결 방식이 관계와 설득 중심인지, 데이터와 도구 중심인지 살펴봅니다."
+    }
+  },
+  "sourceNotes": {
+    "curriculum": "2022 개정 교육과정 선택 과목 구조와 과목명은 교육과정 안내 자료와 시·도 교육과정 지침의 보통 교과/선택 과목 체계를 기준으로 재구성했습니다.",
+    "admission": "2028 모집단위별 권장과목은 필수 이수 기준이 아니라 전공 탐색 참고 자료이며, 대학별 모집요강 확인이 필요합니다.",
+    "mbti": "MBTI 유사 표기는 학생 흥미 유발을 위한 비유이며, 실제 MBTI 검사 결과나 심리 진단을 의미하지 않습니다."
+  },
+  "version": "3.0.0"
+};
+const SCALE_LABELS = {
+  1: "전혀 아님",
+  2: "아닌 편",
+  3: "보통",
+  4: "그런 편",
+  5: "매우 그럼"
+};
+const PAGE_SIZE = 9;
+let shuffledQuestions = [];
+let answers = {};
+let currentPage = 0;
+let lastResultProfile = null;
+
+const $ = (id) => document.getElementById(id);
+
+function showToast(message){
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.classList.add("active");
+  window.setTimeout(() => toast.classList.remove("active"), 2200);
+}
+
+function scrollToEl(selector){
+  const el = document.querySelector(selector);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function shuffle(arr){
+  const copy = [...arr];
+  for(let i = copy.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function initAxisIntro(){
+  const wrap = $("axisIntro");
+  wrap.innerHTML = Object.entries(APP.axes).map(([code, a]) => `
+    <article class="axis-card">
+      <div class="axis-code">${code}</div>
+      <strong>${a.left} ${a.leftName} / ${a.right} ${a.rightName}</strong>
+      <span>${a.desc}</span>
+    </article>
+  `).join("");
+}
+
+function startTest(){
+  shuffledQuestions = shuffle(APP.questions);
+  answers = {};
+  currentPage = 0;
+  $("testSection").classList.add("active");
+  $("resultSection").classList.remove("active");
+  renderQuestions();
+  updateProgress();
+  const url = new URL(location.href);
+  url.search = "";
+  history.replaceState(null, "", url.toString());
+  scrollToEl("#testSection");
+}
+
+function renderQuestions(){
+  const start = currentPage * PAGE_SIZE;
+  const pageQuestions = shuffledQuestions.slice(start, start + PAGE_SIZE);
+  $("pageLabel").textContent = `${currentPage + 1} / ${Math.ceil(shuffledQuestions.length / PAGE_SIZE)}`;
+  $("questionList").innerHTML = pageQuestions.map((q, idx) => {
+    const globalNo = start + idx + 1;
+    const selected = answers[q.id];
+    const choices = [1,2,3,4,5].map(v => `
+      <label class="choice ${selected === v ? "selected" : ""}" data-qid="${q.id}" data-value="${v}">
+        <input type="radio" name="${q.id}" value="${v}" ${selected === v ? "checked" : ""} />
+        <b>${v}</b>
+        <span>${SCALE_LABELS[v]}</span>
+      </label>
+    `).join("");
+    return `
+      <article class="question-card">
+        <div class="question-head">
+          <div class="question-number">${globalNo}</div>
+          <div style="flex:1">
+            <p class="question-text">${q.text}</p>
+            <div class="choice-grid">${choices}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  document.querySelectorAll(".choice").forEach(label => {
+    label.addEventListener("click", () => {
+      const qid = label.dataset.qid;
+      const value = Number(label.dataset.value);
+      answers[qid] = value;
+      document.querySelectorAll(`.choice[data-qid="${qid}"]`).forEach(x => x.classList.remove("selected"));
+      label.classList.add("selected");
+      updateProgress();
+      localStorage.setItem("hifit16_answers", JSON.stringify(answers));
+    });
+  });
+
+  $("prevBtn").disabled = currentPage === 0;
+  $("nextBtn").classList.toggle("hidden", currentPage === Math.ceil(shuffledQuestions.length / PAGE_SIZE) - 1);
+  $("resultBtn").classList.toggle("hidden", currentPage !== Math.ceil(shuffledQuestions.length / PAGE_SIZE) - 1);
+}
+
+function updateProgress(){
+  const answered = Object.keys(answers).length;
+  const total = APP.questions.length;
+  const pct = Math.round((answered / total) * 100);
+  $("progressText").textContent = `${answered} / ${total} 응답`;
+  $("progressPercent").textContent = `${pct}%`;
+  $("progressFill").style.width = `${pct}%`;
+  $("resultBtn").disabled = answered < total;
+  if(answered < total){
+    $("resultBtn").textContent = `결과 보기 (${total - answered}개 남음)`;
+  } else {
+    $("resultBtn").textContent = "결과 보기";
+  }
+}
+
+function goNext(){
+  if(currentPage < Math.ceil(shuffledQuestions.length / PAGE_SIZE) - 1){
+    currentPage += 1;
+    renderQuestions();
+    updateProgress();
+    scrollToEl("#testSection");
+  }
+}
+
+function goPrev(){
+  if(currentPage > 0){
+    currentPage -= 1;
+    renderQuestions();
+    updateProgress();
+    scrollToEl("#testSection");
+  }
+}
+
+function calculateProfile(){
+  const axisScores = {
+    HS:{H:0,S:0,count:0},
+    AC:{A:0,C:0,count:0},
+    FX:{F:0,X:0,count:0},
+    RD:{R:0,D:0,count:0}
+  };
+  APP.questions.forEach(q => {
+    const v = answers[q.id];
+    if(!v) return;
+    const meta = APP.axes[q.axis];
+    const left = meta.left;
+    const right = meta.right;
+    if(q.pole === left){
+      axisScores[q.axis][left] += v;
+      axisScores[q.axis][right] += (6 - v);
+    } else {
+      axisScores[q.axis][right] += v;
+      axisScores[q.axis][left] += (6 - v);
+    }
+    axisScores[q.axis].count += 1;
+  });
+  const pct = {};
+  const typeLetters = [];
+  Object.entries(APP.axes).forEach(([axis, meta]) => {
+    const total = axisScores[axis][meta.left] + axisScores[axis][meta.right];
+    const lp = total ? Math.round(axisScores[axis][meta.left] / total * 100) : 50;
+    const rp = 100 - lp;
+    pct[meta.left] = lp;
+    pct[meta.right] = rp;
+    typeLetters.push(lp >= rp ? meta.left : meta.right);
+  });
+  const code = typeLetters.join("");
+  const careerScores = computeCareerScores(pct);
+  return {
+    code,
+    type: APP.types[code],
+    pct,
+    careerScores,
+    topCareers: Object.entries(careerScores).sort((a,b) => b[1] - a[1]).slice(0,3).map(([key, score]) => ({key, score}))
+  };
+}
+
+function computeCareerScores(p){
+  const clamp = n => Math.max(0, Math.min(100, Math.round(n)));
+  const balance = (a,b) => 100 - Math.abs((p[a] || 50) - (p[b] || 50));
+  return {
+    HUM: clamp(.32*p.H + .22*p.A + .22*p.F + .24*p.R),
+    SOC: clamp(.34*p.H + .23*p.A + .18*p.X + .25*p.R),
+    NAT: clamp(.35*p.S + .35*p.A + .20*p.F + .10*p.D),
+    ENG: clamp(.38*p.S + .25*p.C + .18*p.F + .19*p.D),
+    MED: clamp(.24*p.H + .28*p.S + .23*p.A + .15*p.F + .10*p.R),
+    EDU: clamp(.38*p.H + .20*p.A + .18*p.F + .24*p.R),
+    ART: clamp(.32*p.H + .36*p.C + .18*p.X + .14*p.R),
+    PHE: clamp(.22*p.H + .30*p.S + .34*p.C + .14*p.R),
+    LIB: clamp(.40*p.X + .25*balance("H","S") + .15*balance("A","C") + .10*balance("R","D") + .10*p.C)
+  };
+}
+
+function buildShareUrl(profile){
+  const url = new URL(location.href);
+  url.search = "";
+  url.searchParams.set("type", profile.code);
+  url.searchParams.set("hs", profile.pct.H);
+  url.searchParams.set("ac", profile.pct.A);
+  url.searchParams.set("fx", profile.pct.F);
+  url.searchParams.set("rd", profile.pct.R);
+  url.searchParams.set("v", APP.version);
+  return url.toString();
+}
+
+function parseSharedProfile(){
+  const url = new URL(location.href);
+  const code = url.searchParams.get("type");
+  if(!code || !APP.types[code]) return null;
+  const hs = Number(url.searchParams.get("hs"));
+  const ac = Number(url.searchParams.get("ac"));
+  const fx = Number(url.searchParams.get("fx"));
+  const rd = Number(url.searchParams.get("rd"));
+  const pct = {
+    H: Number.isFinite(hs) ? hs : (code[0] === "H" ? 60 : 40),
+    S: Number.isFinite(hs) ? 100 - hs : (code[0] === "S" ? 60 : 40),
+    A: Number.isFinite(ac) ? ac : (code[1] === "A" ? 60 : 40),
+    C: Number.isFinite(ac) ? 100 - ac : (code[1] === "C" ? 60 : 40),
+    F: Number.isFinite(fx) ? fx : (code[2] === "F" ? 60 : 40),
+    X: Number.isFinite(fx) ? 100 - fx : (code[2] === "X" ? 60 : 40),
+    R: Number.isFinite(rd) ? rd : (code[3] === "R" ? 60 : 40),
+    D: Number.isFinite(rd) ? 100 - rd : (code[3] === "D" ? 60 : 40)
+  };
+  const careerScores = computeCareerScores(pct);
+  return {
+    code,
+    type: APP.types[code],
+    pct,
+    careerScores,
+    topCareers: Object.entries(careerScores).sort((a,b) => b[1] - a[1]).slice(0,3).map(([key, score]) => ({key, score})),
+    shared:true
+  };
+}
+
+function axisSplitHTML(profile){
+  return Object.entries(APP.axes).map(([axis, meta]) => {
+    const leftPct = profile.pct[meta.left];
+    const rightPct = profile.pct[meta.right];
+    const dominant = leftPct >= rightPct ? `${meta.left} ${meta.leftName}` : `${meta.right} ${meta.rightName}`;
+    const margin = Math.abs(leftPct - rightPct);
+    const tone = margin <= 8 ? "균형" : "우세";
+    return `
+      <div class="split-axis">
+        <div class="split-label"><strong>${meta.left} ${meta.leftName}</strong>${leftPct}%</div>
+        <div class="split-mid">${tone}</div>
+        <div class="split-label"><strong>${meta.right} ${meta.rightName}</strong>${rightPct}%</div>
+      </div>
+    `;
+  }).join("");
+}
+
+function careerBarsHTML(profile){
+  return Object.entries(profile.careerScores)
+    .sort((a,b) => b[1] - a[1])
+    .map(([key, score], idx) => {
+      const area = APP.careers[key];
+      return `
+        <div class="bar-row">
+          <div class="bar-top"><strong>${idx+1}. ${area.name}</strong><span>${score}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${score}%"></div></div>
+        </div>
+      `;
+    }).join("");
+}
+
+function chips(items){
+  return items.map(x => `<span class="chip">${x}</span>`).join("");
+}
+
+function courseCardsHTML(profile){
+  return profile.topCareers.map(({key, score}) => {
+    const area = APP.careers[key];
+    return `
+      <article class="course-card">
+        <h3>${area.name} <span style="font-size:.82rem;color:var(--green-700)">${score}%</span></h3>
+        <p>${area.summary}</p>
+        <div class="majors"><strong>관련 전공 예시</strong><br>${area.majors}</div>
+        <div class="course-section"><strong>일반 선택 기반</strong><div class="chips">${chips(area.general)}</div></div>
+        <div class="course-section"><strong>진로 선택 심화</strong><div class="chips">${chips(area.career)}</div></div>
+        <div class="course-section"><strong>융합·공동교육과정 후보</strong><div class="chips">${chips([...area.fusion, ...area.community].slice(0, 12))}</div></div>
+      </article>
+    `;
+  }).join("");
+}
+
+function admissionHTML(profile){
+  const top = profile.topCareers.map(x => APP.careers[x.key]);
+  return `
+    <div class="admission-box">
+      <h3>2028 대입·과목 설계 참고</h3>
+      <p>권장과목은 “반드시 이수해야 하는 기준”이라기보다 전공 탐색과 학업 설계에 참고할 수 있는 신호입니다. 대학·모집단위별 세부 기준은 매년 달라질 수 있으므로 최종 선택 전 모집요강을 확인해야 합니다.</p>
+      <ul>
+        <li>일반 선택 과목으로 기초를 먼저 만들고, 진로 선택·융합 선택 과목으로 관심 분야를 확장하세요.</li>
+        <li>학생부종합전형에서는 과목명뿐 아니라 선택 동기, 학습 과정, 탐구 활동, 성장 과정이 함께 중요합니다.</li>
+        <li>${top.map(a => a.admission).join(" ")}</li>
+      </ul>
+    </div>
+  `;
+}
+
+function renderResult(profile){
+  lastResultProfile = profile;
+  const shareUrl = buildShareUrl(profile);
+  if(!profile.shared){
+    history.replaceState(null, "", shareUrl);
+  }
+  const t = profile.type;
+  const topCareerNames = profile.topCareers.map(x => APP.careers[x.key].name).join(" · ");
+  const resultHTML = `
+    <div class="result-hero">
+      <article class="type-card">
+        <div class="type-emoji-badge">${TYPE_META[profile.code]?.emoji || "✨"}</div>
+        <span class="type-code">${profile.code}</span>
+        <h2>${t.name}</h2>
+        <p class="type-tagline">${TYPE_META[profile.code]?.tagline || ""}</p>
+        <p class="type-summary">${t.summary}</p>
+        <div class="mbti-note">MBTI 유사 감각: ${t.mbti}</div>
+        <p class="mbti-disclaimer">※ 정식 심리검사가 아니라, 이해를 돕기 위한 비유적 표현입니다.</p>
+      </article>
+      <aside class="result-side">
+        <div class="mini-card">
+          <h3 data-ic="🏆">상위 추천 계열</h3>
+          <p>${topCareerNames}</p>
+        </div>
+        <div class="mini-card">
+          <h3 data-ic="⭐">강점 키워드</h3>
+          <ul>${t.strengths.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-ic="🧠">학습 전략</h3>
+          <ul>${t.learning.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="result-grid">
+      <section class="mini-card">
+        <h3 data-ic="🧬">진로핏 DNA</h3>
+        <div class="axis-result-list">${axisSplitHTML(profile)}</div>
+      </section>
+      <section class="mini-card">
+        <h3 data-ic="📈">계열 일치도</h3>
+        <div class="career-list">${careerBarsHTML(profile)}</div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top:18px">
+      <div class="panel-title">
+        <div>
+          <h2>추천 선택 과목</h2>
+          <p>학교에 개설되지 않은 과목은 공동교육과정·온라인학교 등으로 이수할 수 있는지 함께 확인해 보세요.</p>
+        </div>
+      </div>
+      <div class="course-grid">${courseCardsHTML(profile)}</div>
+      ${admissionHTML(profile)}
+      <div class="admission-box" style="background:linear-gradient(180deg,#F6FBF8,#EEF8F1); border-color:#CFE4D4">
+        <h3 style="color:var(--brand-deep)">✅ 상담 전 스스로 점검할 것</h3>
+        <ul style="color:#435047">
+          <li>상위 3개 계열 중 가장 배우고 싶은 과목이 많은 계열은?</li>
+          <li>일반 선택 과목으로 기초를 충분히 쌓고 있는가?</li>
+          <li>진로 선택·융합 선택 과목 중 탐구로 이어질 주제가 있는가?</li>
+          <li>학교에 개설되지 않은 과목은 공동교육과정으로 이수 가능한가?</li>
+        </ul>
+      </div>
+      <div class="share-box">
+        <div class="share-title">결과 공유하기</div>
+        <div class="notice">공유 링크에는 유형 코드와 축 점수만 담기며, 이름·개인정보는 포함되지 않습니다.</div>
+        <div class="share-actions">
+          <button class="btn btn-primary" type="button" id="shareBtn">공유하기</button>
+          <button class="btn btn-secondary" type="button" id="copyLinkBtn">링크 복사</button>
+          <button class="btn btn-secondary" type="button" id="copyTextBtn">결과 텍스트 복사</button>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px">
+        <button class="btn btn-secondary" type="button" onclick="startTest()">다시 검사하기</button>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">결과 인쇄·PDF 저장</button>
+      </div>
+    </section>
+  `;
+  $("resultContainer").innerHTML = resultHTML;
+  $("resultSection").classList.add("active");
+  $("testSection").classList.remove("active");
+  wireShareButtons(profile, shareUrl);
+  scrollToEl("#resultSection");
+}
+
+function shareText(profile, shareUrl){
+  const t = profile.type;
+  const topCareerNames = profile.topCareers.map(x => APP.careers[x.key].name).join(", ");
+  return `나의 Hi-Fit16 진로핏 유형은 ${profile.code} ${t.name}입니다. 상위 추천 계열: ${topCareerNames}. 결과 보기: ${shareUrl}`;
+}
+
+async function copyToClipboard(text, msg){
+  const m = msg || "복사되었습니다.";
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast(m);
+  }catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    showToast(m);
+  }
+}
+
+
+function wireShareButtons(profile, shareUrl){
+  const text = shareText(profile, shareUrl);
+  const shareBtn = $("shareBtn");
+  // 모바일/지원 브라우저에서는 네이티브 공유 시트(카카오톡·인스타·문자 등 자동 노출)
+  shareBtn.addEventListener("click", async () => {
+    if(navigator.share){
+      try{
+        await navigator.share({
+          title:`Hi-Fit16 결과: ${profile.code} ${profile.type.name}`,
+          text,
+          url:shareUrl
+        });
+      }catch(e){
+        if(e.name !== "AbortError") copyToClipboard(text, "결과를 복사했어요. 원하는 곳에 붙여넣어 주세요.");
+      }
+    }else{
+      copyToClipboard(text, "이 브라우저는 공유창을 지원하지 않아 결과를 복사했어요.");
+    }
+  });
+  $("copyLinkBtn").addEventListener("click", () => copyToClipboard(shareUrl, "링크를 복사했어요."));
+  $("copyTextBtn").addEventListener("click", () => copyToClipboard(text, "결과 텍스트를 복사했어요."));
+}
+
+
+function showResult(){
+  const answered = Object.keys(answers).length;
+  if(answered < APP.questions.length){
+    showToast(`${APP.questions.length - answered}개 문항이 남았습니다.`);
+    return;
+  }
+  const profile = calculateProfile();
+  renderResult(profile);
+}
+
+function renderAllTypes(){
+  const grid = $("typesGrid");
+  if(!grid) return;
+  grid.innerHTML = Object.entries(APP.types).map(([code, t]) => {
+    const meta = TYPE_META[code] || {};
+    return `
+      <article class="type-tile">
+        <div class="tt-head">
+          <div class="tt-emoji">${meta.emoji || "✨"}</div>
+          <div>
+            <div class="tt-code">${code}</div>
+            <h4>${t.name}</h4>
+          </div>
+        </div>
+        <p>${meta.tagline || t.summary}</p>
+      </article>
+    `;
+  }).join("");
+}
+
+function openTypesModal(){
+  $("typesOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeTypesModal(){
+  $("typesOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function init(){
+  initAxisIntro();
+  document.querySelectorAll("[data-scroll]").forEach(btn => {
+    btn.addEventListener("click", () => scrollToEl(btn.dataset.scroll));
+  });
+  $("startBtn").addEventListener("click", startTest);
+  $("topStartBtn").addEventListener("click", startTest);
+  $("viewAllTypesBtn").addEventListener("click", openTypesModal);
+  $("topTypesBtn").addEventListener("click", openTypesModal);
+  $("typesCloseBtn").addEventListener("click", closeTypesModal);
+  $("typesOverlay").addEventListener("click", (e) => {
+    if(e.target === $("typesOverlay")) closeTypesModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && $("typesOverlay").classList.contains("open")) closeTypesModal();
+  });
+  renderAllTypes();
+  $("restartBtn").addEventListener("click", startTest);
+  $("nextBtn").addEventListener("click", goNext);
+  $("prevBtn").addEventListener("click", goPrev);
+  $("resultBtn").addEventListener("click", showResult);
+  const shared = parseSharedProfile();
+  if(shared){
+    renderResult(shared);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
