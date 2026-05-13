@@ -16,6 +16,31 @@
     { axis:"RD", left:"R", right:"D", leftName:"소통·관계", rightName:"데이터·기술", description:"해결 방식이 관계와 설득 중심인지, 데이터와 도구 중심인지 살펴봅니다." }
   ];
 
+
+  const TYPE_ICON_MAP = Object.freeze({
+    HAFD: "🧭",
+    HAFR: "📚",
+    HAXD: "🗺️",
+    HAXR: "🌏",
+    HCFD: "🧩",
+    HCFR: "🎞️",
+    HCXD: "🎨",
+    HCXR: "🤝",
+    SAFD: "📊",
+    SAFR: "🔬",
+    SAXD: "🛰️",
+    SAXR: "🧪",
+    SCFD: "⚙️",
+    SCFR: "🛡️",
+    SCXD: "🤖",
+    SCXR: "🚀"
+  });
+
+  function typeIcon(code, fallback){
+    const key = String(code || "").trim().toUpperCase();
+    return TYPE_ICON_MAP[key] || fallback || "◇";
+  }
+
   const config = window.HIFIT16_CONFIG || {};
   const state = {
     loaded: false,
@@ -432,7 +457,7 @@
       <div class="result-shell">
         <div class="result-grid">
           <section class="result-hero">
-            <div class="type-badge">${escapeHtml(result.type.emoji || "✨")}</div>
+            <div class="type-badge">${escapeHtml(typeIcon(result.code, result.type.emoji))}</div>
             <div class="type-code">${escapeHtml(result.code)}</div>
             <h2 class="type-name">${escapeHtml(result.type.name)}</h2>
             <p class="type-tagline">${escapeHtml(result.type.tagline || "")}</p>
@@ -465,13 +490,9 @@
             </div>
             <div class="share-box">
               <h3>결과 공유</h3>
-              <div class="share-actions">
+              <div class="share-actions share-actions-simple">
                 <button class="btn btn-primary" type="button" id="shareBtn">공유하기</button>
-                <button class="btn btn-secondary" type="button" id="copyLinkBtn">링크 복사</button>
-                <button class="btn btn-secondary" type="button" id="copyTextBtn">텍스트 복사</button>
-                <button class="btn btn-secondary" type="button" id="smsBtn">문자</button>
-                <button class="btn btn-secondary" type="button" id="facebookBtn">Facebook</button>
-                <button class="btn btn-secondary" type="button" id="threadsBtn">Threads</button>
+                <button class="btn btn-secondary" type="button" id="copyTextBtn">텍스트복사</button>
               </div>
             </div>
           </aside>
@@ -501,7 +522,7 @@
             <div class="panel-title">
               <div>
                 <h2>9개 계열 일치도</h2>
-                <p>1위만 확정하지 말고 상위 2~3개 계열을 함께 상담 자료로 활용하세요.</p>
+                <p>나의 유형과 9개 계열이 얼마나 일치하는지 보여줍니다.</p>
               </div>
             </div>
             <div class="score-list">${renderCareerScores(result.allCareerScores || [])}</div>
@@ -586,28 +607,10 @@
       showToast("공유 텍스트를 복사했습니다.");
     });
 
-    $("copyLinkBtn")?.addEventListener("click", async () => {
-      await copyToClipboard(shareUrl);
-      showToast("결과 링크를 복사했습니다.");
-    });
-
     $("copyTextBtn")?.addEventListener("click", async () => {
-      await copyToClipboard(`${resultText(result)}\n${shareUrl}`);
+      await copyToClipboard(`${resultText(result)}
+${shareUrl}`);
       showToast("결과 텍스트를 복사했습니다.");
-    });
-
-    $("smsBtn")?.addEventListener("click", () => {
-      const body = encodeURIComponent(`${resultText(result)}\n${shareUrl}`);
-      location.href = `sms:?&body=${body}`;
-    });
-
-    $("facebookBtn")?.addEventListener("click", () => {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank", "noopener,noreferrer");
-    });
-
-    $("threadsBtn")?.addEventListener("click", () => {
-      const text = encodeURIComponent(`${resultText(result)} ${shareUrl}`);
-      window.open(`https://www.threads.net/intent/post?text=${text}`, "_blank", "noopener,noreferrer");
     });
   }
 
@@ -637,7 +640,7 @@
       grid.innerHTML = (payload.types || []).map(t => `
         <article class="type-tile">
           <div class="tt-head">
-            <span class="emoji">${escapeHtml(t.emoji || "✨")}</span>
+            <span class="emoji">${escapeHtml(typeIcon(t.code, t.emoji))}</span>
             <span class="code">${escapeHtml(t.code)}</span>
           </div>
           <p><strong>${escapeHtml(t.name)}</strong></p>
